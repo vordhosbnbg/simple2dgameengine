@@ -17,6 +17,8 @@ public:
     void AddToValue(double addition);
     void ResetValue();
 
+    shared_ptr<Connection> GetNonBusyConnectionFromThisNeuron();
+
 private:
     vector<shared_ptr<Connection>> ConnectionsFrom;
     vector<shared_ptr<Connection>> ConnectionsTo;

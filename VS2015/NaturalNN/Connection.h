@@ -2,6 +2,7 @@
 #define CONNECTION_H
 
 #include <memory>
+#include <mutex>
 #include <Windows.h>
 #include "Neuron.h"
 
@@ -10,15 +11,23 @@ class Neuron;
 class Connection
 {
 public:
-    Connection(shared_ptr<Neuron> first, shared_ptr<Neuron> second);
+    Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination, bool outputConnection = false);
     ~Connection();
 
+    void ProcessSignal();
+    bool IsProcessed();
+    void SetProcessed(bool val);
+
     HANDLE GetDestinationSetEvent();
+    bool isOutput;
 
 private:
     double Weight;
+    bool processed;
+    mutex processed_mutex;
     shared_ptr<Neuron> Source;
     shared_ptr<Neuron> Destination;
+
 
     HANDLE destSetEvent;
 };

@@ -9,10 +9,10 @@ using namespace std;
 class Propagator
 {
 public:
-    Propagator(shared_ptr<Neuron> startNeuron);
+    Propagator(shared_ptr<Connection> startConnection);
     ~Propagator();
 
-    void DoJob(shared_ptr<Neuron> startNeuron);
+    void DoJob(shared_ptr<Connection> startConnection);
 
 private:
     mutex busy;
