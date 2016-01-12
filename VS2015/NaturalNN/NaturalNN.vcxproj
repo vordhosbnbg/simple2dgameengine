@@ -144,10 +144,12 @@
   <ItemGroup>
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Neuron.h" />
+    <ClInclude Include="Propagator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Neuron.cpp" />
+    <ClCompile Include="Propagator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
