@@ -1,7 +1,7 @@
 #include "Connection.h"
 
 
-Connection::Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination, bool outputConnection) : Source(source), Destination(destination), isOutput(outputConnection)
+Connection::Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination) : Source(source), Destination(destination)
 {
     destSetEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 }
@@ -84,4 +84,16 @@ shared_ptr<Connection> Connection::GetDestinationNextLonelyPotentialConnection()
 HANDLE Connection::GetDestinationSetEvent()
 {
     return destSetEvent;
+}
+
+bool Connection::IsOutput()
+{
+    bool retVal = false;
+
+    if (Destination != NULL) 
+    {
+        retVal = Destination->isOutput;
+    }
+
+    return retVal;
 }

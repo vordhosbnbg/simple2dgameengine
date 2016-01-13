@@ -33,6 +33,12 @@
     <ClInclude Include="GUIDHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OutputNeuron.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NaturalNN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Neuron.cpp">
@@ -44,13 +50,10 @@
     <ClCompile Include="Propagator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NormalizedValue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputNeuron.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GUIDHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NaturalNN.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

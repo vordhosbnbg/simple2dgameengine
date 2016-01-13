@@ -12,7 +12,7 @@ class Neuron;
 class Connection : public GUIDHolder
 {
 public:
-    Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination, bool outputConnection = false);
+    Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination);
     ~Connection();
 
     void ProcessSignal();
@@ -25,7 +25,7 @@ public:
     shared_ptr<Connection> WaitUntilDestinationIsReadyAndReturnNextConnection();
     shared_ptr<Connection> GetDestinationNextLonelyPotentialConnection();
     HANDLE GetDestinationSetEvent();
-    bool isOutput;
+    bool IsOutput();
 
 private:
     double Weight;

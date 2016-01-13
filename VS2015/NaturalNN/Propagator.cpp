@@ -25,7 +25,7 @@ void Propagator::DoJob(shared_ptr<Connection> startConnection)
         shared_ptr<Connection> currentConnection = startConnection;
         shared_ptr<Connection> tempConnection;
         shared_ptr<Connection> newConnection;
-        while ((currentConnection != NULL) && (currentConnection->isOutput == false)) 
+        while ((currentConnection != NULL) && (currentConnection->IsOutput() == false)) 
         {
             currentConnection->ProcessSignal();
             tempConnection = currentConnection->WaitUntilDestinationIsReadyAndReturnNextConnection(); // We wait here, untill all input connections are processed

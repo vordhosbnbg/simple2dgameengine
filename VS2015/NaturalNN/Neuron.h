@@ -18,11 +18,17 @@ public:
     void AddToValue(double addition);
     void ResetValue();
 
+    void ConnectInput(shared_ptr<Connection> conn);
+    void ConnectOutput(shared_ptr<Connection> conn);
+
     shared_ptr<Connection> GetNonBusyConnectionFromThisNeuron();
     shared_ptr<Connection> WaitUntilValueIsReadyAndReturnNextConnection();
     shared_ptr<Connection> GetNextLonelyPotentialConnection();
 
-private:
+    bool isOutput;
+
+protected:
+    void WaitUntilValueIsReady();
     vector<shared_ptr<Connection>> ListOfOutputConnections;
     vector<shared_ptr<Connection>> ListOfInputConnections;
     

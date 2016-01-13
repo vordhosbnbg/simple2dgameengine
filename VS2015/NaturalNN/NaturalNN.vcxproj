@@ -101,6 +101,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;NATURALNN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,6 +136,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;NATURALNN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,16 +149,17 @@
     <ClInclude Include="Connection.h" />
     <ClInclude Include="GUIDHolder.h" />
     <ClInclude Include="InputNeuron.h" />
+    <ClInclude Include="NaturalNN.h" />
     <ClInclude Include="Neuron.h" />
     <ClInclude Include="NormalizedValue.h" />
+    <ClInclude Include="OutputNeuron.h" />
     <ClInclude Include="Propagator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="GUIDHolder.cpp" />
-    <ClCompile Include="InputNeuron.cpp" />
+    <ClCompile Include="NaturalNN.cpp" />
     <ClCompile Include="Neuron.cpp" />
-    <ClCompile Include="NormalizedValue.cpp" />
     <ClCompile Include="Propagator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
