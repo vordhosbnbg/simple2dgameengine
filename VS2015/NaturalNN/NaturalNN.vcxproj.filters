@@ -24,6 +24,9 @@
     <ClInclude Include="Propagator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NormalizedValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Neuron.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Propagator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalizedValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
