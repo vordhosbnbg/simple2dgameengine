@@ -70,15 +70,6 @@ shared_ptr<Connection> Connection::WaitUntilDestinationIsReadyAndReturnNextConne
     return Destination->WaitUntilValueIsReadyAndReturnNextConnection();
 }
 
-unsigned int Connection::GetDestinationPotentialLonelyConnectionsNumber()
-{
-    unsigned int retVal = 0;
-    if(Destination != NULL)
-    {
-        retVal = Destination->GetPotentialLonelyConnectionsNumber();
-    }
-    return retVal;
-}
 
 shared_ptr<Connection> Connection::GetDestinationNextLonelyPotentialConnection()
 {

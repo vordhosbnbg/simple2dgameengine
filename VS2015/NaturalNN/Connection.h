@@ -22,7 +22,6 @@ public:
     bool IfNotBusySetBusy();
 
     shared_ptr<Connection> WaitUntilDestinationIsReadyAndReturnNextConnection();
-    unsigned int GetDestinationPotentialLonelyConnectionsNumber();
     shared_ptr<Connection> GetDestinationNextLonelyPotentialConnection();
     HANDLE GetDestinationSetEvent();
     bool isOutput;
