@@ -2,12 +2,13 @@
 #define NEURON_H
 #include <vector>
 #include <memory>
-#include "Connection.h"
 #include <mutex>
+#include "Connection.h"
+#include "GUIDHolder.h"
 
 using namespace std;
 class Connection;
-class Neuron 
+class Neuron : public GUIDHolder
 {
 public:
     Neuron();

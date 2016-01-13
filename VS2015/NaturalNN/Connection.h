@@ -5,10 +5,11 @@
 #include <mutex>
 #include <Windows.h>
 #include "Neuron.h"
+#include "GUIDHolder.h"
 
 using namespace std;
 class Neuron;
-class Connection
+class Connection : public GUIDHolder
 {
 public:
     Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination, bool outputConnection = false);

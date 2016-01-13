@@ -27,6 +27,12 @@
     <ClInclude Include="NormalizedValue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InputNeuron.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIDHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Neuron.cpp">
@@ -39,6 +45,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NormalizedValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputNeuron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIDHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
