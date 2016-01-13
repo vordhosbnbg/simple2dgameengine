@@ -17,7 +17,13 @@ public:
     void ProcessSignal();
     bool IsProcessed();
     void SetProcessed(bool val);
+    bool IsBusy();
+    void SetBusy(bool val);
+    bool IfNotBusySetBusy();
 
+    shared_ptr<Connection> WaitUntilDestinationIsReadyAndReturnNextConnection();
+    unsigned int GetDestinationPotentialLonelyConnectionsNumber();
+    shared_ptr<Connection> GetDestinationNextLonelyPotentialConnection();
     HANDLE GetDestinationSetEvent();
     bool isOutput;
 
@@ -25,6 +31,8 @@ private:
     double Weight;
     bool processed;
     mutex processed_mutex;
+    bool busy;
+    mutex busy_mutex;
     shared_ptr<Neuron> Source;
     shared_ptr<Neuron> Destination;
 

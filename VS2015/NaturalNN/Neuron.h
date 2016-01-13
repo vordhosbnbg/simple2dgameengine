@@ -18,10 +18,12 @@ public:
     void ResetValue();
 
     shared_ptr<Connection> GetNonBusyConnectionFromThisNeuron();
+    shared_ptr<Connection> WaitUntilValueIsReadyAndReturnNextConnection();
+    shared_ptr<Connection> GetNextLonelyPotentialConnection();
 
 private:
-    vector<shared_ptr<Connection>> ConnectionsFrom;
-    vector<shared_ptr<Connection>> ConnectionsTo;
+    vector<shared_ptr<Connection>> ListOfOutputConnections;
+    vector<shared_ptr<Connection>> ListOfInputConnections;
     
     double neuronValue;
     mutex neuronValue_mutex;

@@ -21,16 +21,36 @@ void Propagator::DoJob(shared_ptr<Connection> startConnection)
     // if the destructor is already called we should exit immediately (and possibly indicate error)
     if (busy.try_lock())
     {
-        // here we do propagation
+        // here we do propagation until we get to output connection
         shared_ptr<Connection> currentConnection = startConnection;
-        while ((*currentConnection).isOutput != true) 
+        shared_ptr<Connection> tempConnection;
+        shared_ptr<Connection> newConnection;
+        while ((currentConnection != NULL) && (currentConnection->isOutput == false)) 
         {
-            (*currentConnection).ProcessSignal();
-            (*currentConnection).SetProcessed(true);
-        }
-        
+            currentConnection->ProcessSignal();
+            tempConnection = currentConnection->WaitUntilDestinationIsReadyAndReturnNextConnection(); // We wait here, untill all input connections are processed
+            newConnection = currentConnection->GetDestinationNextLonelyPotentialConnection();
+            while (newConnection != NULL)
+            {
+                // if there is lonely connection available, lets spawn a Popagator on it
+                unique_ptr<Propagator> ptrPropagator = make_unique<Propagator>(newConnection);
+                newConnection = currentConnection->GetDestinationNextLonelyPotentialConnection();
+            }
 
-        busy.unlock();
+            currentConnection = tempConnection; // we are finished with lonely connections, lets propagate further
+        }
+        if (currentConnection != NULL)
+        {
+            // we have reached the connection to the output neuron so we process the last connection and signal its status
+            currentConnection->ProcessSignal();
+        }
+        else 
+        {
+            // we have reached a dead end (other propagators have taken the available output connections from the last reached neuron
+            // we don't have a job anymore
+        }
+
+        busy.unlock(); // lets unlock the mutex (and continue with self-destruct)
     }
 }
 
