@@ -4,7 +4,7 @@
 #include <memory>
 #include "Neuron.h"
 #include "NormalizedValue.h"
-
+#include "Propagator.h"
 
 template<class T>
 class InputNeuron : public Neuron
@@ -40,9 +40,18 @@ public:
         funcGetInput = funcGetter;
     }
 
+    void StartPropagation() 
+    {
+        // start propagation jobs on every output connection
+        for (auto iterConn = ListOfOutputConnections.begin(); iterConn != ListOfOutputConnections.end(); ++iterConn) 
+        {
+            unique_ptr<Propagator> ptrPropagator = make_unique<Propagator>(*iterConn);
+        }
+    }
+
 private:
     unique_ptr<NormalizedValue<T>> input;
     function<T()> funcGetInput;
 };
 
-#endif // !INPUTNEURON_H
+#endif // INPUTNEURON_H

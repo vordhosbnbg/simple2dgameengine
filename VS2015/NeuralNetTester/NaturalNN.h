@@ -17,6 +17,8 @@ public:
     bool RegisterOutput(string outputName, int min, int max, function<void(int)> outputSetter);
 
     void Initialize();
+
+    void RunOnce();
 private:
 
     map<string, shared_ptr<InputNeuron<int>>> ListOfIntInputs;

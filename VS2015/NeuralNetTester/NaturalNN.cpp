@@ -52,3 +52,19 @@ void NaturalNN::Initialize()
     }
 
 }
+
+void NaturalNN::RunOnce()
+{
+    // start signal propagation on all input neurons
+    for (auto iterInput = ListOfIntInputs.begin(); iterInput != ListOfIntInputs.end(); ++iterInput) 
+    {
+        iterInput->second->StartPropagation();
+    }
+
+    for (auto iterOutput = ListOfIntOutputs.begin(); iterOutput != ListOfIntOutputs.end(); ++iterOutput) 
+    {
+        iterOutput->second->ResolveOutput(); // we wait here for each output to be resolved
+    }
+
+    // the outputs are computed
+}

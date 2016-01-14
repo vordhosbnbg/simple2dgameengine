@@ -23,8 +23,7 @@ public:
         funcSetOutput = funcSetter;
     }
 
-private:
-    void ResolveOutput() 
+    void ResolveOutput()
     {
         if (funcSetOutput != NULL)
         {
@@ -33,6 +32,8 @@ private:
             funcSetOutput(output->Get()); // get proper and push it out
         }
     }
+
+private:
 
     unique_ptr<NormalizedValue<T>> output;
     function<void(T)> funcSetOutput;

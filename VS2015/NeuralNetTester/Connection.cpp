@@ -1,8 +1,14 @@
+#include <random>
 #include "Connection.h"
 
 
 Connection::Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination) : Source(source), Destination(destination)
 {
+    std::random_device rd;
+    std::mt19937 e2(rd());
+    std::uniform_real_distribution<> dist(-1.0, 1.0);
+    Weight = dist(e2);
+
     destSetEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 }
 
