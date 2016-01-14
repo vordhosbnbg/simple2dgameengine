@@ -176,6 +176,11 @@
   <ItemGroup>
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Dataset.h" />
+    <ClInclude Include="GraphicsDriver.h" />
+    <ClInclude Include="GSRenderer.h" />
+    <ClInclude Include="GSSurface.h" />
+    <ClInclude Include="GSTexture.h" />
+    <ClInclude Include="GSWindow.h" />
     <ClInclude Include="GUIDHolder.h" />
     <ClInclude Include="InputNeuron.h" />
     <ClInclude Include="NaturalNN.h" />
@@ -185,10 +190,16 @@
     <ClInclude Include="Propagator.h" />
     <ClInclude Include="DataItem.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SdlDeleter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Dataset.cpp" />
+    <ClCompile Include="GraphicsDriver.cpp" />
+    <ClCompile Include="GSRenderer.cpp" />
+    <ClCompile Include="GSSurface.cpp" />
+    <ClCompile Include="GSTexture.cpp" />
+    <ClCompile Include="GSWindow.cpp" />
     <ClCompile Include="GUIDHolder.cpp" />
     <ClCompile Include="NaturalNN.cpp" />
     <ClCompile Include="Neuron.cpp" />
