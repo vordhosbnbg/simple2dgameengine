@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Dataset.h" />
+    <ClInclude Include="Drawable.h" />
     <ClInclude Include="GraphicsDriver.h" />
     <ClInclude Include="GSRenderer.h" />
     <ClInclude Include="GSSurface.h" />
@@ -190,11 +191,13 @@
     <ClInclude Include="Propagator.h" />
     <ClInclude Include="DataItem.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SdlDeleter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Dataset.cpp" />
+    <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="GraphicsDriver.cpp" />
     <ClCompile Include="GSRenderer.cpp" />
     <ClCompile Include="GSSurface.cpp" />
@@ -206,6 +209,7 @@
     <ClCompile Include="Propagator.cpp" />
     <ClCompile Include="DataItem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

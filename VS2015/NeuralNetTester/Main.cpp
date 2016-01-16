@@ -1,7 +1,6 @@
 #include <string>
 #include "SDL.h"
 
-
 using namespace std;
 int main(int argc, char **argv) 
 {
@@ -34,7 +33,6 @@ int main(int argc, char **argv)
                             SDL_Delay(1000);
                         }
                         retVal = 0;
-
                     }
                     else 
                     {
