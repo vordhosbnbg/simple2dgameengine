@@ -10,3 +10,4 @@
 *.opendb
 *.iobj
 *.ipdb
+/VS2015/x64/*
