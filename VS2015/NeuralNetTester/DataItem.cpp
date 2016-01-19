@@ -23,7 +23,7 @@ void DataItem::SetInput(int index, int value)
 
 int DataItem::GetInput(int index)
 {
-    //if(index)
+    return 0;
 }
 
 void DataItem::SetOutput(int index, int value)
@@ -36,5 +36,5 @@ void DataItem::SetOutput(int index, int value)
 
 int DataItem::GetOutput(int index)
 {
-
+    return 0;
 }

@@ -1,22 +1,42 @@
 #include <string>
 #include "SDL.h"
+#include "GraphicsDriver.h"
 
 using namespace std;
 int main(int argc, char **argv) 
 {
     int retVal = 1;
-    if (SDL_Init(SDL_INIT_VIDEO) == 0) 
+    shared_ptr<GraphicsDriver> gd = make_shared<GraphicsDriver>();
+    if (gd->Init(1024,768)) 
     {
-        
+        shared_ptr<GSTexture> tex = gd->CreateTexture(".\\res\\pictures\\nanbot64.png");
+        shared_ptr<Drawable> drwbl = make_shared<Drawable>(tex);
+        gd->AddDrawable(drwbl);
+
+        gd->StartRender();
+
+        Sleep(5000);
+        gd->StopRender();
+        retVal = 0;
+    }
+    return retVal;
+}
+
+void archived_main() 
+{
+    int retVal = 1;
+    if (SDL_Init(SDL_INIT_VIDEO) == 0)
+    {
+
         SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 480, 333, SDL_WINDOW_SHOWN);
         if (win)
         {
             SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-            if (ren) 
+            if (ren)
             {
                 string imagePath = ".\\res\\pictures\\solo.bmp";
                 SDL_Surface *bmp = SDL_LoadBMP(imagePath.c_str());
-                if (bmp) 
+                if (bmp)
                 {
                     SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
                     SDL_FreeSurface(bmp);
@@ -34,14 +54,14 @@ int main(int argc, char **argv)
                         }
                         retVal = 0;
                     }
-                    else 
+                    else
                     {
                         // error
                     }
                     SDL_DestroyTexture(tex);
 
                 }
-                else 
+                else
                 {
                     // error 
                 }
@@ -61,9 +81,8 @@ int main(int argc, char **argv)
     }
     SDL_Quit();
 
-    return retVal;
-}
 
+}
 //#include <Windows.h>
 //
 //LRESULT CALLBACK MessageProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 

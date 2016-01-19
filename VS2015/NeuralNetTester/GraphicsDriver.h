@@ -20,6 +20,7 @@ public:
     bool RemoveDrawable(shared_ptr<Drawable> object);
     void StartRender();
     void StopRender();
+    shared_ptr<GSTexture> CreateTexture(string filename);
 private:
     void SetRenderingStatus(bool val);
     bool isRendering;
@@ -27,6 +28,7 @@ private:
     vector<shared_ptr<Drawable>> ListOfDrawables;
     shared_ptr<GSWindow> window;
     shared_ptr<GSRenderer> renderer;
+    shared_ptr<thread> threadRenderer;
 };
 
 #endif // GRAPHICSDRIVER_H

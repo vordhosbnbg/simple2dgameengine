@@ -18,9 +18,20 @@ bool GraphicsDriver::Init(int width, int height)
 
     if (SDL_Init(SDL_INIT_VIDEO) == 0) 
     {
-        window = make_shared<GSWindow>("WindowTitle", 0, 0, width, height);
+        window =  make_shared<GSWindow>("WindowTitle", 0, 0, width, height);
         renderer = make_shared<GSRenderer>(window);
+        if (window && renderer) 
+        {
+            int flags = IMG_INIT_JPG | IMG_INIT_PNG;
+            int initted = IMG_Init(flags);
+            if ((initted&flags) == flags) 
+            {
+                retVal = true;
+            }
+        }
     }
+
+    return retVal;
 }
 
 bool GraphicsDriver::AddDrawable(shared_ptr<Drawable> object)
@@ -51,6 +62,7 @@ void GraphicsDriver::RenderLoop()
         }
         renderer->RenderPresent();
     }
+    threadRenderer->detach();
 }
 
 bool GraphicsDriver::RemoveDrawable(shared_ptr<Drawable> object)
@@ -61,11 +73,18 @@ bool GraphicsDriver::RemoveDrawable(shared_ptr<Drawable> object)
 void GraphicsDriver::StartRender()
 {
     SetRenderingStatus(true);
+    threadRenderer = make_shared<thread>(&GraphicsDriver::RenderLoop, this);
 }
 
 void GraphicsDriver::StopRender()
 {
+    SetRenderingStatus(false);
+}
 
+shared_ptr<GSTexture> GraphicsDriver::CreateTexture(string filename)
+{
+    shared_ptr<GSTexture> tex = make_shared<GSTexture>(renderer, make_shared<GSSurface>(filename));
+    return tex;
 }
 
 void GraphicsDriver::SetRenderingStatus(bool val)

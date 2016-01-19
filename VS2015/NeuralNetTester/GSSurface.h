@@ -1,6 +1,7 @@
 #ifndef GSSURFACE_H
 #define GSSURFACE_H
 #include <memory>
+#include <string>
 #include "SDL.h"
 #include "SdlDeleter.h"
 
@@ -9,6 +10,7 @@ class GSSurface
 {
 public:
     GSSurface();
+    GSSurface(string filename);
     ~GSSurface();
 
     SDL_Surface * GetRawHandle();
