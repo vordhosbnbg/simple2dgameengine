@@ -5,9 +5,13 @@
 #include "GSWindow.h"
 #include "GSTexture.h"
 #include "SdlDeleter.h"
+#include "GSRectangle.h"
+#include "GSDrawable.h"
+
 
 using namespace std;
 class GSTexture;
+class GSDrawable;
 class GSRenderer
 {
 public:
@@ -15,7 +19,7 @@ public:
     ~GSRenderer();
 
     void Clear();
-    void Copy(shared_ptr<GSTexture> texture);
+    void Copy(shared_ptr<GSDrawable> drawable);
     void RenderPresent();
 
     SDL_Renderer * GetRawHandle();

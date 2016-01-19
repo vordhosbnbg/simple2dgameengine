@@ -15,6 +15,9 @@ public:
     ~GSTexture();
 
     SDL_Texture * GetRawHandle();
+    int GetWidth();
+    int GetHeight();
+
 private:
     unique_ptr<SDL_Texture, sdl_deleter> texture_handle;
 

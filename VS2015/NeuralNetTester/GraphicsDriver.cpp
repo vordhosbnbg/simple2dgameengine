@@ -34,7 +34,7 @@ bool GraphicsDriver::Init(int width, int height)
     return retVal;
 }
 
-bool GraphicsDriver::AddDrawable(shared_ptr<Drawable> object)
+bool GraphicsDriver::AddDrawable(shared_ptr<GSDrawable> object)
 {
     bool retVal = false;
     if (renderer) 
@@ -58,14 +58,14 @@ void GraphicsDriver::RenderLoop()
         renderer->Clear();
         for (auto iterDrawable = ListOfDrawables.begin(); iterDrawable != ListOfDrawables.end(); ++iterDrawable) 
         {
-            renderer->Copy((*iterDrawable)->GetTexture());
+            renderer->Copy(*iterDrawable);
         }
         renderer->RenderPresent();
     }
     threadRenderer->detach();
 }
 
-bool GraphicsDriver::RemoveDrawable(shared_ptr<Drawable> object)
+bool GraphicsDriver::RemoveDrawable(shared_ptr<GSDrawable> object)
 {
     return false;
 }

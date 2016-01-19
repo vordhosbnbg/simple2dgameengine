@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "GraphicsDriver.h"
 
+
 using namespace std;
 int main(int argc, char **argv) 
 {
@@ -10,9 +11,13 @@ int main(int argc, char **argv)
     if (gd->Init(1024,768)) 
     {
         shared_ptr<GSTexture> tex = gd->CreateTexture(".\\res\\pictures\\nanbot64.png");
-        shared_ptr<Drawable> drwbl = make_shared<Drawable>(tex);
-        gd->AddDrawable(drwbl);
-
+        shared_ptr<GSDrawable> drwbl1 = make_shared<GSDrawable>(tex);
+        shared_ptr<GSDrawable> drwbl2 = make_shared<GSDrawable>(tex);
+        gd->AddDrawable(drwbl1);
+        gd->AddDrawable(drwbl2);
+        drwbl1->SetPosition(150, 200);
+        drwbl2->SetPosition(200, 150);
+        drwbl2->SetRotation(120.0);
         gd->StartRender();
 
         Sleep(5000);
@@ -22,67 +27,7 @@ int main(int argc, char **argv)
     return retVal;
 }
 
-void archived_main() 
-{
-    int retVal = 1;
-    if (SDL_Init(SDL_INIT_VIDEO) == 0)
-    {
 
-        SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 480, 333, SDL_WINDOW_SHOWN);
-        if (win)
-        {
-            SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-            if (ren)
-            {
-                string imagePath = ".\\res\\pictures\\solo.bmp";
-                SDL_Surface *bmp = SDL_LoadBMP(imagePath.c_str());
-                if (bmp)
-                {
-                    SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
-                    SDL_FreeSurface(bmp);
-                    if (tex)
-                    {
-                        for (int i = 0; i < 10; ++i) {
-                            //First clear the renderer
-                            SDL_RenderClear(ren);
-                            //Draw the texture
-                            SDL_RenderCopy(ren, tex, NULL, NULL);
-                            //Update the screen
-                            SDL_RenderPresent(ren);
-                            //Take a quick break after all that hard work
-                            SDL_Delay(1000);
-                        }
-                        retVal = 0;
-                    }
-                    else
-                    {
-                        // error
-                    }
-                    SDL_DestroyTexture(tex);
-
-                }
-                else
-                {
-                    // error 
-                }
-                SDL_UnloadObject(bmp);
-            }
-            else
-            {
-                // error
-            }
-            SDL_DestroyRenderer(ren);
-        }
-        else
-        {
-
-        }
-        SDL_DestroyWindow(win);
-    }
-    SDL_Quit();
-
-
-}
 //#include <Windows.h>
 //
 //LRESULT CALLBACK MessageProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
