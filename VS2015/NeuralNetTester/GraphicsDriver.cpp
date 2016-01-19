@@ -9,6 +9,8 @@ GraphicsDriver::GraphicsDriver() : isRendering(false)
 
 GraphicsDriver::~GraphicsDriver()
 {
+    StopRender();
+    threadRenderer->join();
     SDL_Quit();
 }
 
@@ -62,7 +64,6 @@ void GraphicsDriver::RenderLoop()
         }
         renderer->RenderPresent();
     }
-    threadRenderer->detach();
 }
 
 bool GraphicsDriver::RemoveDrawable(shared_ptr<GSDrawable> object)
