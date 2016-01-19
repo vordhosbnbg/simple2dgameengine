@@ -19,7 +19,7 @@ public:
     ~GSRenderer();
 
     void Clear();
-    void Copy(shared_ptr<GSDrawable> drawable);
+    void Draw(shared_ptr<GSDrawable> drawable);
     void RenderPresent();
 
     SDL_Renderer * GetRawHandle();

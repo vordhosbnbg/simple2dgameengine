@@ -23,7 +23,7 @@ GUIDHolder::~GUIDHolder()
 
 bool GUIDHolder::CompareWithObject(GUIDHolder& obj)
 {
-    bool retVal = guid != obj.guid;
+    bool retVal = guid == obj.guid;
     return retVal;
 }
 

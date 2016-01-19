@@ -21,6 +21,8 @@ int main(int argc, char **argv)
         gd->StartRender();
 
         Sleep(5000);
+        gd->RemoveDrawable(drwbl1);
+        Sleep(5000);
         gd->StopRender();
         retVal = 0;
     }

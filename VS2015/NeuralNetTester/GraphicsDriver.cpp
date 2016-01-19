@@ -53,28 +53,26 @@ bool GraphicsDriver::IsRendering()
     return isRendering;
 }
 
-void GraphicsDriver::RenderLoop()
+void GraphicsDriver::MainLoop()
 {
     while (IsRendering())
     {
-        renderer->Clear();
-        for (auto iterDrawable = ListOfDrawables.begin(); iterDrawable != ListOfDrawables.end(); ++iterDrawable) 
-        {
-            renderer->Copy(*iterDrawable);
-        }
-        renderer->RenderPresent();
+        PrepareDraw();
+        DrawAll();
     }
 }
 
 bool GraphicsDriver::RemoveDrawable(shared_ptr<GSDrawable> object)
 {
+    lock_guard<mutex> lock(ListOfDrawablesToRemove_mutex);
+    ListOfDrawablesToRemove.push(object);
     return false;
 }
 
 void GraphicsDriver::StartRender()
 {
     SetRenderingStatus(true);
-    threadRenderer = make_shared<thread>(&GraphicsDriver::RenderLoop, this);
+    threadRenderer = make_shared<thread>(&GraphicsDriver::MainLoop, this);
 }
 
 void GraphicsDriver::StopRender()
@@ -88,10 +86,44 @@ shared_ptr<GSTexture> GraphicsDriver::CreateTexture(string filename)
     return tex;
 }
 
+void GraphicsDriver::PrepareDraw()
+{
+    RemoveDrawablesFromList();
+}
+
+void GraphicsDriver::DrawAll()
+{
+    renderer->Clear();
+    for (auto iterDrawable = ListOfDrawables.begin(); iterDrawable != ListOfDrawables.end(); ++iterDrawable)
+    {
+        renderer->Draw(*iterDrawable);
+    }
+    renderer->RenderPresent();
+}
+
 void GraphicsDriver::SetRenderingStatus(bool val)
 {
     lock_guard<mutex> lock(isRendering_mutex);
 
     isRendering = val;
+}
+
+void GraphicsDriver::RemoveDrawablesFromList()
+{
+    lock_guard<mutex> lock(ListOfDrawablesToRemove_mutex);
+    while(!ListOfDrawablesToRemove.empty()) 
+    {
+        auto DrawableToRemove = ListOfDrawablesToRemove.front();
+        ListOfDrawablesToRemove.pop();
+
+        for (auto iterDrawable = ListOfDrawables.begin(); iterDrawable != ListOfDrawables.end(); ++iterDrawable) 
+        {
+            if ((*iterDrawable)->CompareWithObject((*DrawableToRemove)))
+            {
+                ListOfDrawables.erase(iterDrawable);
+                break;
+            }
+        }
+    }
 }
 
