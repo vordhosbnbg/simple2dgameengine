@@ -190,6 +190,7 @@
   <ItemGroup>
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Dataset.h" />
+    <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GSDrawable.h" />
     <ClInclude Include="GraphicsDriver.h" />
     <ClInclude Include="GSRenderer.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Neuron.h" />
     <ClInclude Include="NormalizedValue.h" />
     <ClInclude Include="OutputNeuron.h" />
+    <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Propagator.h" />
     <ClInclude Include="DataItem.h" />
     <ClInclude Include="GSRectangle.h" />
@@ -212,6 +214,7 @@
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Dataset.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GSDrawable.cpp" />
     <ClCompile Include="GraphicsDriver.cpp" />
     <ClCompile Include="GSRenderer.cpp" />
@@ -221,6 +224,7 @@
     <ClCompile Include="GUIDHolder.cpp" />
     <ClCompile Include="NaturalNN.cpp" />
     <ClCompile Include="Neuron.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Propagator.cpp" />
     <ClCompile Include="DataItem.cpp" />
     <ClCompile Include="Main.cpp" />

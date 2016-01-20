@@ -1,31 +1,16 @@
 #include <string>
 #include "SDL.h"
 #include "GraphicsDriver.h"
+#include "GameEngine.h"
 
 
 using namespace std;
 int main(int argc, char **argv) 
 {
     int retVal = 1;
-    shared_ptr<GraphicsDriver> gd = make_shared<GraphicsDriver>();
-    if (gd->Init(1024,768)) 
-    {
-        shared_ptr<GSTexture> tex = gd->CreateTexture(".\\res\\pictures\\nanbot64.png");
-        shared_ptr<GSDrawable> drwbl1 = make_shared<GSDrawable>(tex);
-        shared_ptr<GSDrawable> drwbl2 = make_shared<GSDrawable>(tex);
-        gd->AddDrawable(drwbl1);
-        gd->AddDrawable(drwbl2);
-        drwbl1->SetPosition(150, 200);
-        drwbl2->SetPosition(200, 150);
-        drwbl2->SetRotation(120.0);
-        gd->StartRender();
-
-        Sleep(5000);
-        gd->RemoveDrawable(drwbl1);
-        Sleep(5000);
-        gd->StopRender();
-        retVal = 0;
-    }
+    GameEngine engine;
+    engine.StartEngine();
+    Sleep(5000);
     return retVal;
 }
 
