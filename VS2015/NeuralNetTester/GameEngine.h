@@ -2,6 +2,7 @@
 #define GAMEENGINE_H
 #include "GraphicsDriver.h"
 #include "PhysicsEngine.h"
+#include "GameObject.h"
 
 class GameEngine
 {
@@ -12,6 +13,7 @@ public:
     bool IsRunning();
     void StartEngine();
     void StopEngine();
+    void AddGameObject(shared_ptr<GameObject> obj);
 
 private:
     void MainLoop();

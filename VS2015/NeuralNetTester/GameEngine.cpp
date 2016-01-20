@@ -1,3 +1,4 @@
+#include <chrono>
 #include "GameEngine.h"
 
 
@@ -42,10 +43,20 @@ void GameEngine::StopEngine()
     SetRunningStatus(false);
 }
 
+void GameEngine::AddGameObject(shared_ptr<GameObject> obj)
+{
+}
+
 void GameEngine::MainLoop()
 {
+    auto oldTime = std::chrono::steady_clock::now();
+    auto newTime = oldTime;
+
     while (IsRunning())
     {
+        newTime = std::chrono::steady_clock::now();
+        std::chrono::duration<double> dTimeInSeconds = newTime - oldTime;
+        pe->Simulate(dTimeInSeconds.count());
         gd->RenderSingleFrame();
     }
 }
