@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "GraphicsDriver.h"
 #include "GameEngine.h"
+#include "Nanobot.h"
 
 
 using namespace std;
@@ -9,6 +10,14 @@ int main(int argc, char **argv)
 {
     int retVal = 1;
     GameEngine engine;
+    shared_ptr<Nanobot> bot1 = make_shared<Nanobot>();
+    shared_ptr<Nanobot> bot2 = make_shared<Nanobot>();
+    engine.AddGameObject(bot1);
+    engine.AddGameObject(bot2);
+    bot1->SetPosition(Vector2D(100, 200));
+    bot1->SetDirection(Vector2D(1, 0));
+    bot2->SetPosition(Vector2D(300, 500));
+    bot2->SetDirection(Vector2D(100, 120));
     engine.StartEngine();
     Sleep(5000);
     return retVal;

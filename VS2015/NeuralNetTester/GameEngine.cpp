@@ -26,15 +26,6 @@ void GameEngine::StartEngine()
 {
     SetRunningStatus(true);
 
-    shared_ptr<GSTexture> tex = gd->GetTexture(".\\res\\pictures\\nanbot64.png");
-    shared_ptr<GSDrawable> drwbl1 = make_shared<GSDrawable>(tex);
-    shared_ptr<GSDrawable> drwbl2 = make_shared<GSDrawable>(tex);
-    gd->AddDrawable(drwbl1);
-    gd->AddDrawable(drwbl2);
-    drwbl1->SetPosition(150, 200);
-    drwbl2->SetPosition(200, 150);
-    drwbl2->SetRotation(120.0);
-
     threadMainLoop = make_shared<thread>(&GameEngine::MainLoop, this);
 }
 
@@ -46,6 +37,15 @@ void GameEngine::StopEngine()
 void GameEngine::AddGameObject(shared_ptr<GameObject> obj)
 {
     obj->SetTexture(gd->GetTexture(obj->GetTexturePath())); // set the proper texture for this object
+    pe->AddPhysicalObject(obj);
+    gd->AddDrawable(obj);
+    ListOfGameObjects.push_back(obj);
+}
+
+void GameEngine::RemoveGameObject(shared_ptr<GameObject> obj)
+{
+    lock_guard<mutex> lock(ListOfGameObjectsToRemove_mutex);
+    ListOfGameObjectsToRemove.push(obj);
 }
 
 shared_ptr<GSTexture> GameEngine::GetTexture(string pathToImageResrouce)
@@ -63,7 +63,16 @@ void GameEngine::MainLoop()
         newTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> dTimeInSeconds = newTime - oldTime;
         pe->Simulate(dTimeInSeconds.count());
+        UpdateAllObjects(dTimeInSeconds.count());
         gd->RenderSingleFrame();
+    }
+}
+
+void GameEngine::UpdateAllObjects(double dT)
+{
+    for (auto iterGameObj = ListOfGameObjects.begin(); iterGameObj != ListOfGameObjects.end(); ++iterGameObj) 
+    {
+        (*iterGameObj)->Update(dT);
     }
 }
 
@@ -72,5 +81,25 @@ void GameEngine::SetRunningStatus(bool val)
     lock_guard<mutex> lock(isRunning_mutex);
 
     isRunning = val;
+}
+
+void GameEngine::RemoveDrawablesFromList()
+{
+    lock_guard<mutex> lock(ListOfGameObjectsToRemove_mutex);
+    while (!ListOfGameObjectsToRemove.empty())
+    {
+        auto GameObjectToRemove = ListOfGameObjectsToRemove.front();
+        ListOfGameObjectsToRemove.pop(); // we remove the game object from this list always
+
+        for (auto iterGameObject = ListOfGameObjects.begin(); iterGameObject != ListOfGameObjects.end(); ++iterGameObject)
+        {
+            // if we find it in the game object list we remove it from there
+            if ((*iterGameObject)->CompareWithObject((*GameObjectToRemove)))
+            {
+                ListOfGameObjects.erase(iterGameObject);
+                break;
+            }
+        }
+    }
 }
 

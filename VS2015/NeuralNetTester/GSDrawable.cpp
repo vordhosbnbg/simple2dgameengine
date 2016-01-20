@@ -21,16 +21,16 @@ GSDrawable::~GSDrawable()
 {
 }
 
-double GSDrawable::GetRotation()
+double GSDrawable::GetDrawableRotation()
 {
     lock_guard<mutex> lock(angleOfRotation_mutex);
     return angleOfRotation;
 }
 
-void GSDrawable::SetRotation(double val)
+void GSDrawable::SetDrawableRotation(double val)
 {
     lock_guard<mutex> lock(angleOfRotation_mutex);
-    angleOfRotation = val;
+    angleOfRotation = val + 90;
 }
 
 shared_ptr<GSTexture> GSDrawable::GetTexture()
@@ -41,10 +41,11 @@ shared_ptr<GSTexture> GSDrawable::GetTexture()
 void GSDrawable::SetTexture(shared_ptr<GSTexture> tex)
 {
     texture = tex;
+    UpdateSizeFromTexture();
 }
 
 void GSDrawable::UpdateSizeFromTexture()
 {
-    SetWidth(texture->GetWidth());
-    SetHeight(texture->GetHeight());
+    SetRectWidth(texture->GetWidth());
+    SetRectHeight(texture->GetHeight());
 }

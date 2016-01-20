@@ -8,7 +8,7 @@
 
 using namespace std;
 class GSTexture;
-class GSDrawable : public GUIDHolder, public GSRectangle
+class GSDrawable : public virtual GUIDHolder, public GSRectangle
 {
 public:
     GSDrawable();
@@ -16,8 +16,8 @@ public:
     GSDrawable(shared_ptr<GSTexture> tex);
     ~GSDrawable();
 
-    double GetRotation();
-    void SetRotation(double val);
+    double GetDrawableRotation();
+    void SetDrawableRotation(double val);
 
     shared_ptr<GSTexture> GetTexture();
     void SetTexture(shared_ptr<GSTexture> tex);

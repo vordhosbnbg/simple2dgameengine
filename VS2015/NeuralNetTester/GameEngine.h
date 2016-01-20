@@ -14,15 +14,20 @@ public:
     void StartEngine();
     void StopEngine();
     void AddGameObject(shared_ptr<GameObject> obj);
+    void RemoveGameObject(shared_ptr<GameObject> obj);
 
     shared_ptr<GSTexture> GetTexture(string pathToImageResrouce);
 private:
     void MainLoop();
+    void UpdateAllObjects(double dT);
     void SetRunningStatus(bool val);
+    void RemoveDrawablesFromList();
     bool isRunning;
     mutex isRunning_mutex;
     shared_ptr<thread> threadMainLoop;
-
+    vector<shared_ptr<GameObject>> ListOfGameObjects;
+    queue<shared_ptr<GameObject>> ListOfGameObjectsToRemove;
+    mutex ListOfGameObjectsToRemove_mutex;
     shared_ptr<GraphicsDriver> gd;
     shared_ptr<PhysicsEngine> pe;
 

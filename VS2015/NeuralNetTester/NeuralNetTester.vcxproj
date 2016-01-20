@@ -200,6 +200,7 @@
     <ClInclude Include="GSWindow.h" />
     <ClInclude Include="GUIDHolder.h" />
     <ClInclude Include="InputNeuron.h" />
+    <ClInclude Include="Nanobot.h" />
     <ClInclude Include="NaturalNN.h" />
     <ClInclude Include="Neuron.h" />
     <ClInclude Include="NormalizedValue.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="GSTexture.cpp" />
     <ClCompile Include="GSWindow.cpp" />
     <ClCompile Include="GUIDHolder.cpp" />
+    <ClCompile Include="Nanobot.cpp" />
     <ClCompile Include="NaturalNN.cpp" />
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="PhysicalObject.cpp" />

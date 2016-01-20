@@ -48,14 +48,14 @@ Vector2D Vector2D::operator-() const
     return Vector2D(-X, -Y);
 }
 
-Vector2D Vector2D::operator+=(const Vector2D & vect) const
+void Vector2D::operator+=(const Vector2D & vect)
 {
-    return (*this) + vect;
+    (*this) = (*this) + vect;
 }
 
-Vector2D Vector2D::operator-=(const Vector2D & vect) const
+void Vector2D::operator-=(const Vector2D & vect)
 {
-    return (*this) - vect;
+    (*this) = (*this) - vect;
 }
 
 void Vector2D::Rotate(double angle)
@@ -66,7 +66,7 @@ void Vector2D::Rotate(double angle)
     Y = tY;
 }
 
-double Vector2D::GetAngle(const Vector2D & vect) const
+double Vector2D::GetAngle() const
 {
     return (atan2(Y,X) / M_PI) * 180.0;
 }

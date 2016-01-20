@@ -9,7 +9,7 @@
 
 using namespace std;
 class Neuron;
-class Connection : public GUIDHolder
+class Connection : public virtual GUIDHolder
 {
 public:
     Connection(shared_ptr<Neuron> source, shared_ptr<Neuron> destination);

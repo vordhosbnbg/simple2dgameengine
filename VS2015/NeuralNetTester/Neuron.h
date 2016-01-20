@@ -8,7 +8,7 @@
 
 using namespace std;
 class Connection;
-class Neuron : public GUIDHolder
+class Neuron : public virtual GUIDHolder
 {
 public:
     Neuron();

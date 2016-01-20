@@ -11,17 +11,17 @@ public:
     GSRectangle(int x, int y, int w, int h);
     ~GSRectangle();
 
-    int GetPosX();
-    int GetPosY();
-    int GetWidth();
-    int GetHeight();
-    void SetPosX(int val);
-    void SetPosY(int val);
-    void SetWidth(int val);
-    void SetHeight(int val);
-    void SetPositionAndSize(int x, int y, int w, int h);
-    void SetPosition(int x, int y);
-    void SetSize(int w, int h);
+    int GetRectPosX();
+    int GetRectPosY();
+    int GetRectWidth();
+    int GetRectHeight();
+    void SetRectPosX(int val);
+    void SetRectPosY(int val);
+    void SetRectWidth(int val);
+    void SetRectHeight(int val);
+    void SetRectPositionAndSize(int x, int y, int w, int h);
+    void SetRectPosition(int x, int y);
+    void SetRectSize(int w, int h);
 
     bool Intersect(shared_ptr<GSRectangle> otherRect);
     bool PointIn();

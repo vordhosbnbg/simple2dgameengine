@@ -15,10 +15,10 @@ public:
     Vector2D operator+(const Vector2D &vect) const;
     Vector2D operator-(const Vector2D &vect) const;
     Vector2D operator-() const;
-    Vector2D operator+=(const Vector2D &vect) const;
-    Vector2D operator-=(const Vector2D &vect) const;
+    void operator+=(const Vector2D &vect);
+    void operator-=(const Vector2D &vect);
     void Rotate(double angle);
-    double GetAngle(const Vector2D &vect) const;
+    double GetAngle() const;
     Vector2D CrossProduct(Vector2D &vect) const;
     Vector2D DotProduct(Vector2D &vect) const;
     double Magnitude();
