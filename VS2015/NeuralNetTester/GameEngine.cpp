@@ -26,7 +26,7 @@ void GameEngine::StartEngine()
 {
     SetRunningStatus(true);
 
-    shared_ptr<GSTexture> tex = gd->CreateTexture(".\\res\\pictures\\nanbot64.png");
+    shared_ptr<GSTexture> tex = gd->GetTexture(".\\res\\pictures\\nanbot64.png");
     shared_ptr<GSDrawable> drwbl1 = make_shared<GSDrawable>(tex);
     shared_ptr<GSDrawable> drwbl2 = make_shared<GSDrawable>(tex);
     gd->AddDrawable(drwbl1);
@@ -45,6 +45,12 @@ void GameEngine::StopEngine()
 
 void GameEngine::AddGameObject(shared_ptr<GameObject> obj)
 {
+    obj->SetTexture(gd->GetTexture(obj->GetTexturePath())); // set the proper texture for this object
+}
+
+shared_ptr<GSTexture> GameEngine::GetTexture(string pathToImageResrouce)
+{
+    return gd->GetTexture(pathToImageResrouce);
 }
 
 void GameEngine::MainLoop()

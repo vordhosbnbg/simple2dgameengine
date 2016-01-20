@@ -6,8 +6,13 @@
 class GameObject : public GSDrawable, public PhysicalObject
 {
 public:
-    GameObject();
+    GameObject(Vector2D &position, Vector2D &direction, Vector2D &velocity, double mass, double friction, string pathToTexture);
     ~GameObject();
+
+    string GetTexturePath();
+private:
+    string texturePath;
+
 };
 
 #endif // GAMEOBJECT_H

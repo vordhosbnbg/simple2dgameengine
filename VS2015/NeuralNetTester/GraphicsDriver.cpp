@@ -8,6 +8,7 @@ GraphicsDriver::GraphicsDriver(int width, int height)
     {
         window = make_shared<GSWindow>("WindowTitle", 0, 0, width, height);
         renderer = make_shared<GSRenderer>(window);
+        textureManager = make_shared<TextureManager>(renderer);
         if (window && renderer)
         {
             int flags = IMG_INIT_JPG | IMG_INIT_PNG;
@@ -51,10 +52,9 @@ bool GraphicsDriver::RemoveDrawable(shared_ptr<GSDrawable> object)
 }
 
 
-shared_ptr<GSTexture> GraphicsDriver::CreateTexture(string filename)
+shared_ptr<GSTexture> GraphicsDriver::GetTexture(string filename)
 {
-    shared_ptr<GSTexture> tex = make_shared<GSTexture>(renderer, make_shared<GSSurface>(filename));
-    return tex;
+    return textureManager->GetTexture(filename);
 }
 
 void GraphicsDriver::PrepareDraw()
@@ -78,10 +78,11 @@ void GraphicsDriver::RemoveDrawablesFromList()
     while(!ListOfDrawablesToRemove.empty()) 
     {
         auto DrawableToRemove = ListOfDrawablesToRemove.front();
-        ListOfDrawablesToRemove.pop();
+        ListOfDrawablesToRemove.pop(); // we remove the drawable from this list always
 
         for (auto iterDrawable = ListOfDrawables.begin(); iterDrawable != ListOfDrawables.end(); ++iterDrawable) 
         {
+            // if we find it in the drawble list we remove it from there
             if ((*iterDrawable)->CompareWithObject((*DrawableToRemove)))
             {
                 ListOfDrawables.erase(iterDrawable);

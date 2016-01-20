@@ -7,6 +7,7 @@
 #include "SDL.h"
 #include "GSRenderer.h"
 #include "GSDrawable.h"
+#include "TextureManager.h"
 
 class GraphicsDriver
 {
@@ -17,7 +18,7 @@ public:
     bool AddDrawable(shared_ptr<GSDrawable> object);
     void RenderSingleFrame();
     bool RemoveDrawable(shared_ptr<GSDrawable> object);
-    shared_ptr<GSTexture> CreateTexture(string filename);
+    shared_ptr<GSTexture> GetTexture(string filename);
 private:
     void PrepareDraw();
     void DrawAll();
@@ -27,6 +28,7 @@ private:
     mutex ListOfDrawablesToRemove_mutex;
     shared_ptr<GSWindow> window;
     shared_ptr<GSRenderer> renderer;
+    shared_ptr<TextureManager> textureManager;
 };
 
 #endif // GRAPHICSDRIVER_H

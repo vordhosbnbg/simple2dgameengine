@@ -15,6 +15,7 @@ public:
     void StopEngine();
     void AddGameObject(shared_ptr<GameObject> obj);
 
+    shared_ptr<GSTexture> GetTexture(string pathToImageResrouce);
 private:
     void MainLoop();
     void SetRunningStatus(bool val);
