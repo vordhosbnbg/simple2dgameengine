@@ -30,7 +30,10 @@ void PhysicalObject::Simulate(double dT)
 {
     velocity += (force / mass) * dT; // calculate velocity
     velocity *= (1 - frictionCoef * dT) ;
-    position += velocity * dT; // calculate position
+    if(velocity.Magnitude() > 1)
+    {
+        position += velocity * dT; // calculate position
+    }
     direction = Vector2D::CreateVectorFromAngle(direction.GetAngle() + directionChange*dT);
     directionChange = 0;
     force = 0;
@@ -62,6 +65,12 @@ bool PhysicalObject::IsColliding(shared_ptr<PhysicalObject> obj)
         retVal = false;
     }
 
+    return retVal;
+}
+
+bool PhysicalObject::IsMovingAwayFrom(shared_ptr<PhysicalObject> obj)
+{
+    bool retVal = position.Distance(obj->position) < (position + velocity).Distance(obj->position + obj->velocity);
     return retVal;
 }
 

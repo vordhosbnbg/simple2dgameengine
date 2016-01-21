@@ -17,6 +17,7 @@ public:
     void AddImpulse(Vector2D &foreginImpulse);
     Vector2D RemoveImpulse();
     bool IsColliding(shared_ptr<PhysicalObject> obj);
+    bool IsMovingAwayFrom(shared_ptr<PhysicalObject> obj);
 protected:
     virtual void Collide(shared_ptr<PhysicalObject> obj);
     double mass;

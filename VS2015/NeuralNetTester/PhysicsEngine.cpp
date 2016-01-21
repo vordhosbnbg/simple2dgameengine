@@ -53,10 +53,13 @@ void PhysicsEngine::ResolveCollisions()
 {
     for (auto iterCollidePair = ListOfPairsThatCollide.begin(); iterCollidePair != ListOfPairsThatCollide.end(); ++iterCollidePair) 
     {
-        Vector2D impulseFirst = iterCollidePair->first->RemoveImpulse();
-        Vector2D impulseSecond = iterCollidePair->second->RemoveImpulse();
-        iterCollidePair->first->AddImpulse(impulseSecond);
-        iterCollidePair->second->AddImpulse(impulseFirst);
+        if (!iterCollidePair->first->IsMovingAwayFrom(iterCollidePair->second))
+        {
+            Vector2D impulseFirst = iterCollidePair->first->RemoveImpulse();
+            Vector2D impulseSecond = iterCollidePair->second->RemoveImpulse();
+            iterCollidePair->first->AddImpulse(impulseSecond);
+            iterCollidePair->second->AddImpulse(impulseFirst);
+        }
     }
     ListOfPairsThatCollide.clear();
 }
