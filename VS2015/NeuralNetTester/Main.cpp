@@ -18,6 +18,7 @@ int main(int argc, char **argv)
     shared_ptr<Nanobot> bot6 = make_shared<Nanobot>();
     shared_ptr<Nanobot> bot7 = make_shared<Nanobot>();
     engine.AddGameObject(bot1);
+    engine.StartEngine();
     engine.AddGameObject(bot2);
     engine.AddGameObject(bot3);
     engine.AddGameObject(bot4);
@@ -37,7 +38,21 @@ int main(int argc, char **argv)
     bot6->SetDirection(Vector2D(-1, -2.5));
     bot7->SetPosition(Vector2D(600, 200));
     bot7->SetDirection(Vector2D(-1, -1.5));
-    engine.StartEngine();
+    bot1->StartMovement();
+    bot2->StartMovement();
+    bot3->StartMovement();
+    bot4->StartMovement();
+    bot5->StartMovement();
+    bot6->StartMovement();
+    bot7->StartMovement();
+    Sleep(3000);
+    bot1->StopMovement();
+    bot2->StopMovement();
+    bot3->StopMovement();
+    bot4->StopMovement();
+    bot5->StopMovement();
+    bot6->StopMovement();
+    bot7->StopMovement();
     Sleep(5000);
     return retVal;
 }

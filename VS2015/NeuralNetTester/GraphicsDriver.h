@@ -24,8 +24,10 @@ private:
     void DrawAll();
     void RemoveDrawablesFromList();
     vector<shared_ptr<GSDrawable>> ListOfDrawables;
+    mutex ListOfDrawables_mutex;
     queue<shared_ptr<GSDrawable>> ListOfDrawablesToRemove;
     mutex ListOfDrawablesToRemove_mutex;
+    mutex reneringActive_mutex;
     shared_ptr<GSWindow> window;
     shared_ptr<GSRenderer> renderer;
     shared_ptr<TextureManager> textureManager;

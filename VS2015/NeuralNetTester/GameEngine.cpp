@@ -36,6 +36,7 @@ void GameEngine::StopEngine()
 
 void GameEngine::AddGameObject(shared_ptr<GameObject> obj)
 {
+    lock_guard<mutex> lock(ListOfGameObjects_mutex);
     obj->SetTexture(gd->GetTexture(obj->GetTexturePath())); // set the proper texture for this object
     pe->AddPhysicalObject(obj);
     gd->AddDrawable(obj);
@@ -70,6 +71,7 @@ void GameEngine::MainLoop()
 
 void GameEngine::UpdateAllObjects(double dT)
 {
+    lock_guard<mutex> lock(ListOfGameObjects_mutex);
     for (auto iterGameObj = ListOfGameObjects.begin(); iterGameObj != ListOfGameObjects.end(); ++iterGameObj) 
     {
         (*iterGameObj)->Update(dT);

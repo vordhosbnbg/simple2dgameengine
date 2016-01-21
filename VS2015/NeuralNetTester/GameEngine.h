@@ -26,6 +26,7 @@ private:
     mutex isRunning_mutex;
     shared_ptr<thread> threadMainLoop;
     vector<shared_ptr<GameObject>> ListOfGameObjects;
+    mutex ListOfGameObjects_mutex;
     queue<shared_ptr<GameObject>> ListOfGameObjectsToRemove;
     mutex ListOfGameObjectsToRemove_mutex;
     shared_ptr<GraphicsDriver> gd;
