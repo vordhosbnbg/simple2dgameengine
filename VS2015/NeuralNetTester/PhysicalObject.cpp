@@ -10,14 +10,19 @@ PhysicalObject::~PhysicalObject()
 {
 }
 
-void PhysicalObject::AddForce(Vector2D newForce)
+void PhysicalObject::ApplyForce(Vector2D newForce)
 {
     force += newForce;
 }
 
-void PhysicalObject::AddForceInDirection(double newtons)
+void PhysicalObject::ApplyForceInDirection(double newtons)
 {
     force += direction * newtons;
+}
+
+void PhysicalObject::ApplyRotation(double degreesPerSecond)
+{
+    directionChange += degreesPerSecond;
 }
 
 
@@ -26,5 +31,6 @@ void PhysicalObject::Simulate(double dT)
     velocity += (force / mass) * dT; // calculate velocity
     //velocity -= (velocity * frictionCoef * dT);
     position += velocity * dT; // calculate position
+    
     force = 0;
 }

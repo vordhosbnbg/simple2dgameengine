@@ -9,14 +9,17 @@ public:
     PhysicalObject(Vector2D pos, Vector2D dir, Vector2D vel, double objectMass, double frict, double colliderRadius);
     ~PhysicalObject();
 
-    void AddForce(Vector2D newForce);
-    void AddForceInDirection(double newtons);
+    void ApplyForce(Vector2D newForce);
+    void ApplyForceInDirection(double newtons);
+    void ApplyRotation(double degreesPerSecond);
+
     void Simulate(double dT);
 
 protected:
     double mass;
     double frictionCoef;
     double radius;
+    double directionChange;
     Vector2D direction;
     Vector2D position;
     Vector2D velocity;

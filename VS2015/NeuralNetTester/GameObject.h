@@ -13,8 +13,8 @@ public:
     Vector2D GetPosition();
     void SetDirection(Vector2D dir);
     Vector2D GetDirection();
-    void Update(double dT);
 
+    void Update(double dT);
     virtual void Tick(double dT);
 
 

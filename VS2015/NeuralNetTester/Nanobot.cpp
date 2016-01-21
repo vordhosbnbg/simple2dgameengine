@@ -13,6 +13,6 @@ Nanobot::~Nanobot()
 
 void Nanobot::Tick(double dT)
 {
-    AddForceInDirection(0.2);
+    ApplyForceInDirection(0.2);
 }
 
