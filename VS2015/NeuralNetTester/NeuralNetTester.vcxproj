@@ -188,6 +188,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Dataset.h" />
     <ClInclude Include="GameEngine.h" />
@@ -219,6 +220,7 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Dataset.cpp" />
     <ClCompile Include="GameEngine.cpp" />

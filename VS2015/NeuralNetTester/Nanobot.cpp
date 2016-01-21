@@ -8,8 +8,8 @@ Nanobot::Nanobot() :
         Vector2D(0,0), // direction
         Vector2D(0,0), // velocity
         100, // mass
-        0.05, // friction
-        32, // collider radius
+        0.1, // friction
+        30, // collider radius
         ".\\res\\pictures\\blue_bot64.png" // texture
         ), 
     is_moving(false)
@@ -25,7 +25,7 @@ void Nanobot::Tick(double dT)
 {
     if (is_moving)
     {
-        ApplyForceInDirection(1000);
+        ApplyForceInDirection(1500);
         ApplyRotation(10);
     }
 }

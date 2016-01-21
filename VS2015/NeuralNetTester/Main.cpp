@@ -3,7 +3,7 @@
 #include "GraphicsDriver.h"
 #include "GameEngine.h"
 #include "Nanobot.h"
-
+#include "Asteroid.h"
 
 using namespace std;
 int main(int argc, char **argv) 
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
     shared_ptr<Nanobot> bot5 = make_shared<Nanobot>();
     shared_ptr<Nanobot> bot6 = make_shared<Nanobot>();
     shared_ptr<Nanobot> bot7 = make_shared<Nanobot>();
+    shared_ptr<Asteroid> rock1 = make_shared<Asteroid>();
     engine.StartEngine();
     engine.AddGameObject(bot1);
     engine.AddGameObject(bot2);
@@ -24,6 +25,7 @@ int main(int argc, char **argv)
     engine.AddGameObject(bot4);
     engine.AddGameObject(bot5);
     engine.AddGameObject(bot7);
+    engine.AddGameObject(rock1);
     bot1->SetPosition(Vector2D(200, 200));
     bot1->SetDirection(Vector2D(15, -4));
     bot2->SetPosition(Vector2D(300, 500));
@@ -38,6 +40,7 @@ int main(int argc, char **argv)
     bot6->SetDirection(Vector2D(1, -2.5));
     bot7->SetPosition(Vector2D(600, 200));
     bot7->SetDirection(Vector2D(-1, -1.5));
+    rock1->SetPosition(Vector2D(400, 200));
     bot1->StartMovement();
     bot2->StartMovement();
     bot3->StartMovement();
@@ -45,7 +48,7 @@ int main(int argc, char **argv)
     bot5->StartMovement();
     bot6->StartMovement();
     bot7->StartMovement();
-    Sleep(3000);
+    Sleep(4000);
     bot1->StopMovement();
     bot2->StopMovement();
     bot3->StopMovement();
