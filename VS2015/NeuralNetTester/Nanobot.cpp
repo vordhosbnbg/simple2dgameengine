@@ -2,7 +2,17 @@
 
 
 
-Nanobot::Nanobot() : GameObject(Vector2D(0,0), Vector2D(0,0), Vector2D(0,0), 100, 0.3, 32, ".\\res\\pictures\\nanobot64.png"), is_moving(false)
+Nanobot::Nanobot() : 
+    GameObject(
+        Vector2D(0,0), // position
+        Vector2D(0,0), // direction
+        Vector2D(0,0), // velocity
+        100, // mass
+        0.05, // friction
+        32, // collider radius
+        ".\\res\\pictures\\blue_bot64.png" // texture
+        ), 
+    is_moving(false)
 {
 }
 
@@ -15,7 +25,7 @@ void Nanobot::Tick(double dT)
 {
     if (is_moving)
     {
-        ApplyForceInDirection(0.2);
+        ApplyForceInDirection(1000);
         ApplyRotation(10);
     }
 }

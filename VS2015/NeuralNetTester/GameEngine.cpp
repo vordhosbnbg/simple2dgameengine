@@ -63,6 +63,7 @@ void GameEngine::MainLoop()
     {
         newTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> dTimeInSeconds = newTime - oldTime;
+        oldTime = newTime;
         pe->Simulate(dTimeInSeconds.count());
         UpdateAllObjects(dTimeInSeconds.count());
         gd->RenderSingleFrame();

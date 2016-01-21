@@ -10,9 +10,9 @@ public:
     ~Vector2D();
 
     Vector2D operator*(double scalar) const;
-    Vector2D operator*=(double scalar) const;
+    void operator*=(double scalar);
     Vector2D operator/(double scalar) const;
-    Vector2D operator/=(double scalar) const;
+    void operator/=(double scalar);
     Vector2D operator+(const Vector2D &vect) const;
     Vector2D operator-(const Vector2D &vect) const;
     Vector2D operator-() const;
@@ -22,6 +22,7 @@ public:
     double GetAngle() const;
     Vector2D CrossProduct(Vector2D &vect) const;
     Vector2D DotProduct(Vector2D &vect) const;
+    double Distance(Vector2D &vect) const;
     double Magnitude();
     void Normalize();
 

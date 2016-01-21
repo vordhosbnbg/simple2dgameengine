@@ -23,9 +23,9 @@ Vector2D Vector2D::operator*(double scalar) const
     return Vector2D(X*scalar, Y*scalar);
 }
 
-Vector2D Vector2D::operator*=(double scalar) const
+void Vector2D::operator*=(double scalar)
 {
-    return ((*this) * scalar);
+    (*this) = (*this) * scalar;
 }
 
 Vector2D Vector2D::operator/(double scalar) const
@@ -33,9 +33,9 @@ Vector2D Vector2D::operator/(double scalar) const
     return Vector2D(X/scalar, Y/scalar);
 }
 
-Vector2D Vector2D::operator/=(double scalar) const
+void Vector2D::operator/=(double scalar)
 {
-    return (*this) / scalar;
+    (*this) = (*this) / scalar;
 }
 
 Vector2D Vector2D::operator+(const Vector2D & vect) const
@@ -84,6 +84,11 @@ Vector2D Vector2D::CrossProduct(Vector2D & vect) const
 Vector2D Vector2D::DotProduct(Vector2D & vect) const
 {
     return ((X * vect.X) + (Y * vect.Y));
+}
+
+double Vector2D::Distance(Vector2D & vect) const
+{
+    return sqrt(pow(X-vect.X,2) + pow(Y-vect.Y,2));
 }
 
 double Vector2D::Magnitude()

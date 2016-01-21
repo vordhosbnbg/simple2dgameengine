@@ -29,6 +29,36 @@ void PhysicsEngine::Simulate(double dT)
     {
         (*iterPobj)->Simulate(dT);
     }
+    FindCollisions();
+    ResolveCollisions();
+}
+
+int PhysicsEngine::FindCollisions()
+{
+    int retVal = 0;
+    for (auto iterObj1 = ListOfPhysicalObjects.begin(); iterObj1 != ListOfPhysicalObjects.end(); ++iterObj1)
+    {
+        for (auto iterObj2 = next(iterObj1); iterObj2 != ListOfPhysicalObjects.end(); ++iterObj2) 
+        {
+            if ((*iterObj1)->IsColliding((*iterObj2))) 
+            {
+                ListOfPairsThatCollide.push_back(make_pair((*iterObj1), (*iterObj2)));
+            }
+        }
+    }
+    return retVal;
+}
+
+void PhysicsEngine::ResolveCollisions()
+{
+    for (auto iterCollidePair = ListOfPairsThatCollide.begin(); iterCollidePair != ListOfPairsThatCollide.end(); ++iterCollidePair) 
+    {
+        Vector2D impulseFirst = iterCollidePair->first->RemoveImpulse();
+        Vector2D impulseSecond = iterCollidePair->second->RemoveImpulse();
+        iterCollidePair->first->AddImpulse(impulseSecond);
+        iterCollidePair->second->AddImpulse(impulseFirst);
+    }
+    ListOfPairsThatCollide.clear();
 }
 
 void PhysicsEngine::RemovePhysicalObjectsFromList()

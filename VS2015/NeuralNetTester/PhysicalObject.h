@@ -14,8 +14,11 @@ public:
     void ApplyRotation(double degreesPerSecond);
 
     void Simulate(double dT);
-
+    void AddImpulse(Vector2D &foreginImpulse);
+    Vector2D RemoveImpulse();
+    bool IsColliding(shared_ptr<PhysicalObject> obj);
 protected:
+    virtual void Collide(shared_ptr<PhysicalObject> obj);
     double mass;
     double frictionCoef;
     double radius;
