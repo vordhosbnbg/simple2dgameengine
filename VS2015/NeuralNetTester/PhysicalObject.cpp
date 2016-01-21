@@ -31,6 +31,6 @@ void PhysicalObject::Simulate(double dT)
     velocity += (force / mass) * dT; // calculate velocity
     //velocity -= (velocity * frictionCoef * dT);
     position += velocity * dT; // calculate position
-    
+    direction += Vector2D::CreateVectorFromAngle(directionChange);
     force = 0;
 }
