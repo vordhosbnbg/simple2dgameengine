@@ -1,6 +1,6 @@
 #include "GSWindow.h"
 
-GSWindow::GSWindow(const char * title, int posX, int posY, int width, int height) : windowHandle(SDL_CreateWindow(title, posX, posY, width, height, SDL_WINDOW_SHOWN), sdl_deleter())
+GSWindow::GSWindow(const char * title, int posX, int posY, int width, int height) : windowHandle(SDL_CreateWindow(title, posX, posY, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL ), sdl_deleter())
 {
 
 }

@@ -9,6 +9,11 @@ Vector2D::Vector2D(double x, double y)
     Y = y;
 }
 
+Vector2D Vector2D::CreateVectorFromAngle(double degree)
+{
+    return(Vector2D(cos(degree * M_PI / 180), sin(degree * M_PI / 180)));
+}
+
 Vector2D::~Vector2D()
 {
 }

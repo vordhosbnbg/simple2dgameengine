@@ -6,6 +6,7 @@ class Vector2D
 {
 public:
     Vector2D(double x = 0, double y = 0);
+    static Vector2D CreateVectorFromAngle(double degree);
     ~Vector2D();
 
     Vector2D operator*(double scalar) const;
