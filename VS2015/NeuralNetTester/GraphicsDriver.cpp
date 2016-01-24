@@ -32,6 +32,7 @@ bool GraphicsDriver::AddDrawable(shared_ptr<GSDrawable> object)
     lock_guard<mutex> lock(ListOfDrawables_mutex);
     if (renderer) 
     {
+
         ListOfDrawables.push_back(object);
         retVal = true;
     };
@@ -39,10 +40,11 @@ bool GraphicsDriver::AddDrawable(shared_ptr<GSDrawable> object)
 }
 
 
-void GraphicsDriver::RenderSingleFrame()
+void GraphicsDriver::RenderSingleFrame(double dT)
 {
     lock_guard<mutex> lock(ListOfDrawables_mutex);
     PrepareDraw();
+    UpdateAll(dT);
     DrawAll();
 }
 
@@ -60,10 +62,19 @@ shared_ptr<GSTexture> GraphicsDriver::GetTexture(string filename)
     return textureManager->GetTexture(filename);
 }
 
+void GraphicsDriver::UpdateAll(double dT)
+{
+    for (auto iterDrawable = ListOfDrawables.begin(); iterDrawable != ListOfDrawables.end(); ++iterDrawable)
+    {
+        (*iterDrawable)->UpdateDrawable(dT);
+    }
+}
+
 void GraphicsDriver::PrepareDraw()
 {
     RemoveDrawablesFromList();
 }
+
 
 void GraphicsDriver::DrawAll()
 {
@@ -75,6 +86,7 @@ void GraphicsDriver::DrawAll()
     }
     renderer->RenderPresent();
 }
+
 
 void GraphicsDriver::RemoveDrawablesFromList()
 {

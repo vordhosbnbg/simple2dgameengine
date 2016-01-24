@@ -22,6 +22,7 @@ private:
     void RemovePhysicalObjectsFromList();
     vector<pair<shared_ptr<PhysicalObject>, shared_ptr<PhysicalObject>>> ListOfPairsThatCollide;
     vector<shared_ptr<PhysicalObject>> ListOfPhysicalObjects;
+    mutex ListOfPhysicalObjects_mutex;
     queue<shared_ptr<PhysicalObject>> ListOfPhysicalObjectsToRemove;
     mutex ListOfPhysicalObjectsToRemove_mutex;
 };

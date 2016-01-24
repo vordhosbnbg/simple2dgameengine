@@ -23,6 +23,7 @@ shared_ptr<GSTexture> TextureManager::GetTexture(string imageResourcePath)
     else 
     {
         retVal = make_shared<GSTexture>(rend, make_shared<GSSurface>(imageResourcePath));
+        MapOfLoadedTextures.insert(pair<string, shared_ptr<GSTexture>>(imageResourcePath, retVal));
     }
     return retVal;
 }

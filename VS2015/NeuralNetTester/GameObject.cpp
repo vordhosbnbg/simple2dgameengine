@@ -2,7 +2,7 @@
 
 
 
-GameObject::GameObject(Vector2D & position, Vector2D & direction, Vector2D & velocity, double mass, double friction, double colliderRadius, string pathToTexture) : PhysicalObject(position, direction, velocity, mass, friction, colliderRadius), texturePath(pathToTexture)
+GameObject::GameObject(Vector2D & position, Vector2D & direction, Vector2D & velocity, double mass, double friction, double colliderRadius, string pathToTexture, bool isSleeping) : PhysicalObject(position, direction, velocity, mass, friction, colliderRadius, isSleeping), texturePath(pathToTexture)
 {
 }
 
@@ -24,7 +24,7 @@ Vector2D GameObject::GetPosition()
 void GameObject::SetDirection(Vector2D dir)
 {
     direction = dir;
-    direction.Normalize();
+    direction = direction.Normalize();
     SetDrawableRotation(dir.GetAngle());
 }
 
@@ -42,6 +42,12 @@ void GameObject::Update(double dT)
 
 void GameObject::Tick(double dT)
 {
+}
+
+void GameObject::RegisterWithEngine(GameEngine * eng)
+{
+    registeredEngine = eng;
+    SetTexture(registeredEngine->GetTexture(texturePath));
 }
 
 string GameObject::GetTexturePath()

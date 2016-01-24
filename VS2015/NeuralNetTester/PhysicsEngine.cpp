@@ -13,6 +13,7 @@ PhysicsEngine::~PhysicsEngine()
 
 void PhysicsEngine::AddPhysicalObject(shared_ptr<PhysicalObject> obj)
 {
+    lock_guard<mutex> lock(ListOfPhysicalObjects_mutex);
     ListOfPhysicalObjects.push_back(obj);
 }
 
@@ -35,14 +36,21 @@ void PhysicsEngine::Simulate(double dT)
 
 int PhysicsEngine::FindCollisions()
 {
+    lock_guard<mutex> lock(ListOfPhysicalObjects_mutex);
     int retVal = 0;
     for (auto iterObj1 = ListOfPhysicalObjects.begin(); iterObj1 != ListOfPhysicalObjects.end(); ++iterObj1)
     {
-        for (auto iterObj2 = next(iterObj1); iterObj2 != ListOfPhysicalObjects.end(); ++iterObj2) 
+        if ((*iterObj1)->IsActive())
         {
-            if ((*iterObj1)->IsColliding((*iterObj2))) 
+            for (auto iterObj2 = next(iterObj1); iterObj2 != ListOfPhysicalObjects.end(); ++iterObj2)
             {
-                ListOfPairsThatCollide.push_back(make_pair((*iterObj1), (*iterObj2)));
+                if ((*iterObj2)->IsActive())
+                {
+                    if ((*iterObj1)->IsColliding((*iterObj2)))
+                    {
+                        ListOfPairsThatCollide.push_back(make_pair((*iterObj1), (*iterObj2)));
+                    }
+                }
             }
         }
     }
@@ -66,7 +74,8 @@ void PhysicsEngine::ResolveCollisions()
 
 void PhysicsEngine::RemovePhysicalObjectsFromList()
 {
-    lock_guard<mutex> lock(ListOfPhysicalObjectsToRemove_mutex);
+    lock_guard<mutex> lock1(ListOfPhysicalObjectsToRemove_mutex);
+    lock_guard<mutex> lock2(ListOfPhysicalObjects_mutex);
     while (!ListOfPhysicalObjectsToRemove.empty())
     {
         auto DrawableToRemove = ListOfPhysicalObjectsToRemove.front();

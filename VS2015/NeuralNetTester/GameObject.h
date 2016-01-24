@@ -2,11 +2,13 @@
 #define GAMEOBJECT_H
 #include "GSDrawable.h"
 #include "PhysicalObject.h"
+#include "GameEngine.h"
 
-class GameObject : public GSDrawable, public PhysicalObject
+class GameEngine;
+class GameObject : virtual public GSDrawable, public PhysicalObject
 {
 public:
-    GameObject(Vector2D &position, Vector2D &direction, Vector2D &velocity, double mass, double friction, double colliderRadius, string pathToTexture);
+    GameObject(Vector2D &position, Vector2D &direction, Vector2D &velocity, double mass, double friction, double colliderRadius, string pathToTexture, bool isSleeping);
     ~GameObject();
 
     void SetPosition(Vector2D pos);
@@ -17,9 +19,10 @@ public:
     void Update(double dT);
     virtual void Tick(double dT);
 
-
+    void RegisterWithEngine(GameEngine * eng);
     string GetTexturePath();
-private:
+protected:
+    GameEngine * registeredEngine;
     string texturePath;
 
 };

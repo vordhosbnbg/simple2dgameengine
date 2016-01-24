@@ -24,7 +24,10 @@ public:
     Vector2D DotProduct(Vector2D &vect) const;
     double Distance(Vector2D &vect) const;
     double Magnitude();
-    void Normalize();
+    Vector2D Normalize();
+    Vector2D AddLength(double length);
+    Vector2D ToLeft(double val);
+    Vector2D ToRight(double val);
 
     double X;
     double Y;

@@ -2,6 +2,8 @@
 #define GSDRAWABLE_H
 #include <mutex>
 #include <memory>
+#include <string>
+#include <vector>
 #include "GSTexture.h"
 #include "GUIDHolder.h"
 #include "GSRectangle.h"
@@ -16,14 +18,20 @@ public:
     GSDrawable(shared_ptr<GSTexture> tex);
     ~GSDrawable();
 
+    virtual void UpdateDrawable(double dT);
     double GetDrawableRotation();
     void SetDrawableRotation(double val);
 
     shared_ptr<GSTexture> GetTexture();
     void SetTexture(shared_ptr<GSTexture> tex);
-private:
-    void UpdateSizeFromTexture();
+
+    shared_ptr<GSRectangle> GetSrcRect();
+
+protected:
+    shared_ptr<GSRectangle> srcRect;
+    virtual void UpdateSizeFromTexture();
     shared_ptr<GSTexture> texture;
+    string texturePath;
     double angleOfRotation;
     mutex angleOfRotation_mutex;
 };

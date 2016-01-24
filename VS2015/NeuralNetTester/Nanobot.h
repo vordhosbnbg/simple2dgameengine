@@ -1,6 +1,7 @@
 #ifndef NANOBOT_H
 #define NANOBOT_H
 #include "GameObject.h"
+#include "MiningBeam.h"
 
 class Nanobot : public GameObject
 {
@@ -11,8 +12,12 @@ public:
     void Tick(double dT) override;
     void StartMovement();
     void StopMovement();
+    void StartMining();
+    void StopMining();
 private:
     bool is_moving;
+    bool is_mining;
+    shared_ptr<MiningBeam> beam;
 };
 
 #endif // NANOBOT_H

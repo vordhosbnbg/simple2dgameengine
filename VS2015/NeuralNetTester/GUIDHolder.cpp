@@ -7,9 +7,9 @@
 GUIDHolder::GUIDHolder()
 {
     UUID uuid;
-    if (CoCreateGuid(&uuid) != S_OK)
+    if (CoCreateGuid(&uuid) == S_OK)
     {
-        guid = (uint64_t)uuid.Data1 << 32 & (uint64_t)uuid.Data2 << 16 && (uint64_t)uuid.Data3;
+        guid = ((uint64_t)uuid.Data1 << 32) | ((uint64_t)uuid.Data2 << 16) | ((uint64_t)uuid.Data3);
     }
 }
 

@@ -96,9 +96,26 @@ double Vector2D::Magnitude()
     return sqrt(X*X + Y*Y);
 }
 
-void Vector2D::Normalize()
+Vector2D Vector2D::Normalize()
 {
     double mag = Magnitude();
-    X = X / mag;
-    Y = Y / mag;
+
+    return Vector2D(X / mag, Y / mag);
+}
+
+Vector2D Vector2D::AddLength(double length)
+{
+    double mag = Magnitude();
+    
+    return Normalize() * (mag + length);
+}
+
+Vector2D Vector2D::ToLeft(double val)
+{
+    return (*this) + Vector2D(X, -Y).Normalize() * val; 
+}
+
+Vector2D Vector2D::ToRight(double val)
+{
+    return (*this) + Vector2D(-X, Y).Normalize() * val;
 }

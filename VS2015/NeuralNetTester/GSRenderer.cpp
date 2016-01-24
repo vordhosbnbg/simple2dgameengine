@@ -19,7 +19,7 @@ void GSRenderer::Clear()
 
 void GSRenderer::Draw(shared_ptr<GSDrawable> drawable)
 {
-    SDL_RenderCopyEx(renderer_handle.get(), drawable->GetTexture()->GetRawHandle(), NULL, drawable->GetRawRect(), drawable->GetDrawableRotation(), NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer_handle.get(), drawable->GetTexture()->GetRawHandle(), drawable->GetSrcRect()->GetRawRect(), drawable->GetRawRect(), drawable->GetDrawableRotation(), NULL, SDL_FLIP_NONE);
 }
 
 void GSRenderer::RenderPresent()

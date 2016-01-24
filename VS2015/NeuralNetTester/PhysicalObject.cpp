@@ -2,7 +2,7 @@
 
 
 
-PhysicalObject::PhysicalObject(Vector2D pos, Vector2D dir, Vector2D vel, double objectMass, double frict, double colliderRadius) : position(pos), direction(dir), mass(objectMass), frictionCoef(frict), radius(colliderRadius), directionChange(0)
+PhysicalObject::PhysicalObject(Vector2D pos, Vector2D dir, Vector2D vel, double objectMass, double frict, double colliderRadius, bool sleeping) : position(pos), direction(dir), mass(objectMass), frictionCoef(frict), radius(colliderRadius), directionChange(0), isSleeping(sleeping)
 {
 }
 
@@ -56,13 +56,21 @@ Vector2D PhysicalObject::RemoveImpulse()
     return retVal;
 }
 
+bool PhysicalObject::IsActive()
+{
+    return !isSleeping;
+}
+
 bool PhysicalObject::IsColliding(shared_ptr<PhysicalObject> obj)
 {
     bool retVal = true;
 
-    if (position.Distance(obj->position) > (radius + obj->radius)) 
+    if (!isSleeping)
     {
-        retVal = false;
+        if (position.Distance(obj->position) > (radius + obj->radius))
+        {
+            retVal = false;
+        }
     }
 
     return retVal;

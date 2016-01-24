@@ -10,7 +10,8 @@ Asteroid::Asteroid() :
         1000, // mass
         0.1, // friction
         50, // collider radius
-        ".\\res\\pictures\\asteroid_sq.png" // texture
+        ".\\res\\pictures\\asteroid_sq.png", // texture
+        false
         )
 {
 }

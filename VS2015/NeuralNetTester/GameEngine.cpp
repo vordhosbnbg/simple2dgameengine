@@ -37,9 +37,10 @@ void GameEngine::StopEngine()
 void GameEngine::AddGameObject(shared_ptr<GameObject> obj)
 {
     lock_guard<mutex> lock(ListOfGameObjects_mutex);
-    obj->SetTexture(gd->GetTexture(obj->GetTexturePath())); // set the proper texture for this object
+    //obj->SetTexture(gd->GetTexture(obj->GetTexturePath())); // set the proper texture for this object
     pe->AddPhysicalObject(obj);
     gd->AddDrawable(obj);
+    obj->RegisterWithEngine(this);
     ListOfGameObjects.push_back(obj);
 }
 
@@ -47,6 +48,8 @@ void GameEngine::RemoveGameObject(shared_ptr<GameObject> obj)
 {
     lock_guard<mutex> lock(ListOfGameObjectsToRemove_mutex);
     ListOfGameObjectsToRemove.push(obj);
+    pe->RemovePhysicalObject(obj);
+    gd->RemoveDrawable(obj);
 }
 
 shared_ptr<GSTexture> GameEngine::GetTexture(string pathToImageResrouce)
@@ -65,12 +68,13 @@ void GameEngine::MainLoop()
         std::chrono::duration<double> dTimeInSeconds = newTime - oldTime;
         oldTime = newTime;
         pe->Simulate(dTimeInSeconds.count());
-        UpdateAllObjects(dTimeInSeconds.count());
-        gd->RenderSingleFrame();
+        RemoveGameObjectsFromList();
+        UpdateAllGameObjects(dTimeInSeconds.count());
+        gd->RenderSingleFrame(dTimeInSeconds.count());
     }
 }
 
-void GameEngine::UpdateAllObjects(double dT)
+void GameEngine::UpdateAllGameObjects(double dT)
 {
     lock_guard<mutex> lock(ListOfGameObjects_mutex);
     for (auto iterGameObj = ListOfGameObjects.begin(); iterGameObj != ListOfGameObjects.end(); ++iterGameObj) 
@@ -86,7 +90,7 @@ void GameEngine::SetRunningStatus(bool val)
     isRunning = val;
 }
 
-void GameEngine::RemoveDrawablesFromList()
+void GameEngine::RemoveGameObjectsFromList()
 {
     lock_guard<mutex> lock(ListOfGameObjectsToRemove_mutex);
     while (!ListOfGameObjectsToRemove.empty())

@@ -24,6 +24,7 @@ int main(int argc, char **argv)
     engine.AddGameObject(bot3);
     engine.AddGameObject(bot4);
     engine.AddGameObject(bot5);
+    engine.AddGameObject(bot6);
     engine.AddGameObject(bot7);
     engine.AddGameObject(rock1);
     bot1->SetPosition(Vector2D(200, 200));
@@ -56,6 +57,21 @@ int main(int argc, char **argv)
     bot5->StopMovement();
     bot6->StopMovement();
     bot7->StopMovement();
+    bot1->StartMining();
+    bot2->StartMining();
+    bot3->StartMining();
+    bot4->StartMining();
+    bot5->StartMining();
+    bot6->StartMining();
+    bot7->StartMining();
+    Sleep(5000);
+    bot1->StopMining();
+    bot2->StopMining();
+    bot3->StopMining();
+    bot4->StopMining();
+    bot5->StopMining();
+    bot6->StopMining();
+    bot7->StopMining();
     Sleep(5000);
     return retVal;
 }

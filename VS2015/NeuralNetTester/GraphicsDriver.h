@@ -16,10 +16,12 @@ public:
     ~GraphicsDriver();
 
     bool AddDrawable(shared_ptr<GSDrawable> object);
-    void RenderSingleFrame();
+    void RenderSingleFrame(double dT);
     bool RemoveDrawable(shared_ptr<GSDrawable> object);
     shared_ptr<GSTexture> GetTexture(string filename);
 private:
+    void UpdateAll(double dT);
+
     void PrepareDraw();
     void DrawAll();
     void RemoveDrawablesFromList();

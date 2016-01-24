@@ -6,7 +6,7 @@
 class PhysicalObject : public virtual GUIDHolder
 {
 public:
-    PhysicalObject(Vector2D pos, Vector2D dir, Vector2D vel, double objectMass, double frict, double colliderRadius);
+    PhysicalObject(Vector2D pos, Vector2D dir, Vector2D vel, double objectMass, double frict, double colliderRadius, bool sleeping);
     ~PhysicalObject();
 
     void ApplyForce(Vector2D newForce);
@@ -16,10 +16,12 @@ public:
     void Simulate(double dT);
     void AddImpulse(Vector2D &foreginImpulse);
     Vector2D RemoveImpulse();
+    bool IsActive();
     bool IsColliding(shared_ptr<PhysicalObject> obj);
     bool IsMovingAwayFrom(shared_ptr<PhysicalObject> obj);
 protected:
     virtual void Collide(shared_ptr<PhysicalObject> obj);
+    bool isSleeping;
     double mass;
     double frictionCoef;
     double radius;

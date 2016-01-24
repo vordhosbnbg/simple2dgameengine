@@ -4,6 +4,7 @@
 #include "PhysicsEngine.h"
 #include "GameObject.h"
 
+class GameObject;
 class GameEngine
 {
 public:
@@ -19,9 +20,9 @@ public:
     shared_ptr<GSTexture> GetTexture(string pathToImageResrouce);
 private:
     void MainLoop();
-    void UpdateAllObjects(double dT);
+    void UpdateAllGameObjects(double dT);
     void SetRunningStatus(bool val);
-    void RemoveDrawablesFromList();
+    void RemoveGameObjectsFromList();
     bool isRunning;
     mutex isRunning_mutex;
     shared_ptr<thread> threadMainLoop;

@@ -1,5 +1,5 @@
 #include "Nanobot.h"
-
+#include "MiningBeam.h"
 
 
 Nanobot::Nanobot() : 
@@ -10,9 +10,11 @@ Nanobot::Nanobot() :
         100, // mass
         0.1, // friction
         30, // collider radius
-        ".\\res\\pictures\\blue_bot64.png" // texture
+        ".\\res\\pictures\\blue_bot64.png", // texture
+        false
         ), 
-    is_moving(false)
+    is_moving(false),
+    is_mining(false)
 {
 }
 
@@ -28,6 +30,11 @@ void Nanobot::Tick(double dT)
         ApplyForceInDirection(1500);
         ApplyRotation(10);
     }
+    if (is_mining)
+    {
+        beam->SetPosition(GetPosition() + GetDirection() * 70);
+        beam->SetDirection(GetDirection());
+    }
 }
 
 void Nanobot::StartMovement()
@@ -38,5 +45,21 @@ void Nanobot::StartMovement()
 void Nanobot::StopMovement()
 {
     is_moving = false;
+}
+
+void Nanobot::StartMining()
+{
+    beam = make_shared<MiningBeam>();
+    beam->SetPosition(GetPosition() + GetDirection()*70);
+    beam->SetDirection(GetDirection());
+
+    registeredEngine->AddGameObject(beam);
+    is_mining = true;
+}
+
+void Nanobot::StopMining()
+{
+    is_mining = false;
+    registeredEngine->RemoveGameObject(beam);
 }
 
