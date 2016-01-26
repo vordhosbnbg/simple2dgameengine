@@ -114,6 +114,12 @@
     <ClInclude Include="AnimatedGameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlasmaBolt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThermalBlast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -198,6 +204,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AnimatedGameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlasmaBolt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThermalBlast.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

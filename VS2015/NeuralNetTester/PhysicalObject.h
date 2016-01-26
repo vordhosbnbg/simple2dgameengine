@@ -12,6 +12,7 @@ public:
     void ApplyForce(Vector2D newForce);
     void ApplyForceInDirection(double newtons);
     void ApplyRotation(double degreesPerSecond);
+    void SetVelocity(Vector2D vel);
 
     void Simulate(double dT);
     void AddImpulse(Vector2D &foreginImpulse);

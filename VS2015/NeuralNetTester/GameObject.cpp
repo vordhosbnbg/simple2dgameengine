@@ -13,7 +13,7 @@ GameObject::~GameObject()
 void GameObject::SetPosition(Vector2D pos)
 {
     position = pos;
-    SetRectPosition((int)(pos.X-GetRectWidth()/2), (int)(pos.Y-GetRectHeight()/2));
+    dstRect->SetRectPosition((int)(pos.X - (srcRect->GetRectWidth() * zoomLevel)/2), (int)(pos.Y - (srcRect->GetRectHeight() * zoomLevel)/2));
 }
 
 Vector2D GameObject::GetPosition()

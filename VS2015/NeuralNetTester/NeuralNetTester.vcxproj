@@ -153,6 +153,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)SDL\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /d /y $(ProjectDir)SDL\dll\$(Configuration) $(OutputPath)</Command>
@@ -182,6 +183,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)SDL\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /d /y $(ProjectDir)SDL\dll\$(Configuration) $(OutputPath)</Command>
@@ -211,6 +213,7 @@
     <ClInclude Include="OutputNeuron.h" />
     <ClInclude Include="PhysicalObject.h" />
     <ClInclude Include="PhysicsEngine.h" />
+    <ClInclude Include="PlasmaBolt.h" />
     <ClInclude Include="Propagator.h" />
     <ClInclude Include="DataItem.h" />
     <ClInclude Include="GSRectangle.h" />
@@ -220,6 +223,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SdlDeleter.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="ThermalBlast.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +247,7 @@
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="PhysicalObject.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="PlasmaBolt.cpp" />
     <ClCompile Include="Propagator.cpp" />
     <ClCompile Include="DataItem.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -250,6 +255,7 @@
     <ClCompile Include="pugixml\pugixml.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="ThermalBlast.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

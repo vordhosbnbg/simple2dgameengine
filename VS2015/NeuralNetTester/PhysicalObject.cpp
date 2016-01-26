@@ -25,10 +25,18 @@ void PhysicalObject::ApplyRotation(double degreesPerSecond)
     directionChange += degreesPerSecond;
 }
 
+void PhysicalObject::SetVelocity(Vector2D vel)
+{
+    velocity = vel;
+}
+
 
 void PhysicalObject::Simulate(double dT)
 {
-    velocity += (force / mass) * dT; // calculate velocity
+    if (mass > 0)
+    {
+        velocity += (force / mass) * dT; // calculate velocity
+    }
     velocity *= (1 - frictionCoef * dT) ;
     if(velocity.Magnitude() > 1)
     {

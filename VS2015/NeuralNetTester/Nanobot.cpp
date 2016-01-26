@@ -1,5 +1,7 @@
 #include "Nanobot.h"
 #include "MiningBeam.h"
+#include "PlasmaBolt.h"
+#include "ThermalBlast.h"
 
 
 Nanobot::Nanobot() : 
@@ -61,5 +63,15 @@ void Nanobot::StopMining()
 {
     is_mining = false;
     registeredEngine->RemoveGameObject(beam);
+}
+
+void Nanobot::Shoot()
+{
+    shared_ptr<ThermalBlast> bolt = make_shared<ThermalBlast>();
+    bolt->SetPosition(GetPosition() + GetDirection() * 40);
+    bolt->SetDirection(GetDirection());
+    bolt->SetVelocity(GetDirection() * 200);
+    bolt->SetZoom(0.25);
+    registeredEngine->AddGameObject(bolt);
 }
 

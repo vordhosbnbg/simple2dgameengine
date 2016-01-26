@@ -14,6 +14,7 @@ public:
     void StopMovement();
     void StartMining();
     void StopMining();
+    void Shoot();
 private:
     bool is_moving;
     bool is_mining;
