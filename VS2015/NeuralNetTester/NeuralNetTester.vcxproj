@@ -218,6 +218,7 @@
     <ClInclude Include="PhysicalObject.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PlasmaBolt.h" />
+    <ClInclude Include="PrintDebug.h" />
     <ClInclude Include="Propagator.h" />
     <ClInclude Include="DataItem.h" />
     <ClInclude Include="GSRectangle.h" />

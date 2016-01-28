@@ -123,6 +123,9 @@
     <ClInclude Include="TagHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PrintDebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

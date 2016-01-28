@@ -4,6 +4,7 @@
 #include <memory>
 #include <stdint.h>
 #include <string>
+#include "PrintDebug.h"
 
 using namespace std;
 class GUIDHolder

@@ -15,25 +15,26 @@ public:
     void ApplyRotation(double degreesPerSecond);
     void SetVelocity(Vector2D vel);
 
-    void Simulate(double dT);
+    void SimulateForces(double dT);
+    void MoveToNewPosition(double dT);
     void AddImpulse(Vector2D &foreginImpulse);
     Vector2D RemoveImpulse();
     bool IsCollidable();
     bool HasImpulse();
     bool IsColliding(shared_ptr<PhysicalObject> obj);
-    bool IsMovingAwayFrom(shared_ptr<PhysicalObject> obj);
+    bool IsMovingAwayFrom(shared_ptr<PhysicalObject> obj, double dT);
     virtual void Collide(const shared_ptr<PhysicalObject> obj);
     Vector2D position;
+    Vector2D velocity;
+    double mass;
 
 protected:
     bool isCollidable;
     bool hasImpulse;
-    double mass;
     double frictionCoef;
     double radius;
     double directionChange;
     Vector2D direction;
-    Vector2D velocity;
     Vector2D force;
 };
 

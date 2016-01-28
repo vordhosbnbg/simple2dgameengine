@@ -17,7 +17,7 @@ public:
     void RemovePhysicalObject(shared_ptr<PhysicalObject> obj);
     void Simulate(double dT);
     int FindCollisions();
-    void ResolveCollisions();
+    void ResolveCollisions(double dT);
 private:
     void RemovePhysicalObjectsFromList();
     vector<pair<shared_ptr<PhysicalObject>, shared_ptr<PhysicalObject>>> ListOfPairsThatCollide;

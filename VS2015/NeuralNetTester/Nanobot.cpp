@@ -87,13 +87,13 @@ void Nanobot::Shoot()
 
 void Nanobot::ReceiveDamage(double dmg)
 {
-    OutputDebugStringA(string("Nanobot receives " + to_string(dmg) + " dmg.\n").c_str());
-    OutputDebugStringA((("Old health: ")+ to_string(health) + "\n").c_str());
+    PrintDebug(string("Nanobot receives " + to_string(dmg) + " dmg.\n").c_str());
+    PrintDebug((("Old health: ")+ to_string(health) + "\n").c_str());
     health -= dmg;
-    OutputDebugStringA((("New health: ") + to_string(health) + "\n").c_str());
+    PrintDebug((("New health: ") + to_string(health) + "\n").c_str());
     if (health <= 0)
     {
-        OutputDebugStringA("New health: \n");
+        PrintDebug("New health: \n");
         Die();
     }
 }

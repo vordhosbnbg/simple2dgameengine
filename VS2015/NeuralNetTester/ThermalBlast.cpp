@@ -33,10 +33,10 @@ void ThermalBlast::Collide(const shared_ptr<PhysicalObject> obj)
     if (obj->HasTag(Tag::Nanobot_type))
     {
         auto bot = static_pointer_cast<Nanobot, PhysicalObject>(obj);
-        OutputDebugStringA("Thermal blast hits!\n");
-        OutputDebugStringA("ThermalBlast GUID:");
-        OutputDebugStringA(to_string(this->guid).c_str());
-        OutputDebugStringA((string("\nBlast(") + to_string(this->position.X) + "," + to_string(this->position.Y) + "); Nanobot(" + to_string(obj->position.X) + "," + to_string(obj->position.Y) + ")\n").c_str());
+        PrintDebug("Thermal blast hits!\n");
+        PrintDebug("ThermalBlast GUID:");
+        PrintDebug(to_string(this->guid).c_str());
+        PrintDebug((string("\nBlast(") + to_string(this->position.X) + "," + to_string(this->position.Y) + "); Nanobot(" + to_string(obj->position.X) + "," + to_string(obj->position.Y) + ")\n").c_str());
         bot->ReceiveDamage(damage_amount);
     }
     
