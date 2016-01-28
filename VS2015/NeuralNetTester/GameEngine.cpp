@@ -103,6 +103,7 @@ void GameEngine::RemoveGameObjectsFromList()
             // if we find it in the game object list we remove it from there
             if ((*iterGameObject)->CompareWithObject((*GameObjectToRemove)))
             {
+                OutputDebugStringA(("Erasing object with GUID: " + to_string(GameObjectToRemove->guid) + "\n").c_str());
                 ListOfGameObjects.erase(iterGameObject);
                 break;
             }

@@ -33,6 +33,7 @@ void PhysicsEngine::Simulate(double dT)
     }
     FindCollisions();
     ResolveCollisions();
+    RemovePhysicalObjectsFromList();
 }
 
 int PhysicsEngine::FindCollisions()
@@ -54,6 +55,7 @@ int PhysicsEngine::FindCollisions()
             }
         }
     }
+    OutputDebugStringA(("Found " + to_string(retVal) + " collisions.\n").c_str());
     return retVal;
 }
 
@@ -61,6 +63,7 @@ void PhysicsEngine::ResolveCollisions()
 {
     for (auto iterCollidePair = ListOfPairsThatCollide.begin(); iterCollidePair != ListOfPairsThatCollide.end(); ++iterCollidePair) 
     {
+        OutputDebugStringA(("Resolving collision between GUID: " + to_string(iterCollidePair->first->guid) + " and GUID:" + to_string(iterCollidePair->second->guid) + "\n").c_str());
         if (iterCollidePair->first->HasImpulse() && iterCollidePair->second->HasImpulse())
         {
             if (!iterCollidePair->first->IsMovingAwayFrom(iterCollidePair->second))
@@ -80,7 +83,6 @@ void PhysicsEngine::ResolveCollisions()
 void PhysicsEngine::RemovePhysicalObjectsFromList()
 {
     lock_guard<mutex> lock1(ListOfPhysicalObjectsToRemove_mutex);
-    lock_guard<mutex> lock2(ListOfPhysicalObjects_mutex);
     while (!ListOfPhysicalObjectsToRemove.empty())
     {
         auto DrawableToRemove = ListOfPhysicalObjectsToRemove.front();

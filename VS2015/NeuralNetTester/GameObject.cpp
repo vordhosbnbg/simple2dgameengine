@@ -57,5 +57,6 @@ string GameObject::GetTexturePath()
 
 void GameObject::Die()
 {
+    OutputDebugStringA(("Object with GUID: " + to_string(guid) + " marked for removal.\n").c_str());
     registeredEngine->RemoveGameObject(shared_from_this());
 }
