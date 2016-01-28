@@ -11,6 +11,7 @@ AnimatedGameObject(
     0,
     8,
     ".\\res\\pictures\\plasma_bolt_anim_11f.png",
+    true,
     false,
     11,
     (1.0 / 5),

@@ -5,10 +5,10 @@
 #include "GameEngine.h"
 
 class GameEngine;
-class GameObject : virtual public GSDrawable, public PhysicalObject
+class GameObject : virtual public GSDrawable, public PhysicalObject, enable_shared_from_this<GameObject>
 {
 public:
-    GameObject(Vector2D &position, Vector2D &direction, Vector2D &velocity, double mass, double friction, double colliderRadius, string pathToTexture, bool isSleeping);
+    GameObject(Vector2D &position, Vector2D &direction, Vector2D &velocity, double mass, double friction, double colliderRadius, string pathToTexture, bool isCollidable, bool hasImpulse);
     ~GameObject();
 
     void SetPosition(Vector2D pos);
@@ -21,6 +21,8 @@ public:
 
     void RegisterWithEngine(GameEngine * eng);
     string GetTexturePath();
+
+    void Die();
 protected:
     GameEngine * registeredEngine;
     string texturePath;

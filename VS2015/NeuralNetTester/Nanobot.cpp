@@ -2,22 +2,27 @@
 #include "MiningBeam.h"
 #include "PlasmaBolt.h"
 #include "ThermalBlast.h"
+#include <iostream>
 
-
-Nanobot::Nanobot() : 
+Nanobot::Nanobot() :
     GameObject(
-        Vector2D(0,0), // position
-        Vector2D(0,0), // direction
-        Vector2D(0,0), // velocity
+        Vector2D(0, 0), // position
+        Vector2D(0, 0), // direction
+        Vector2D(0, 0), // velocity
         100, // mass
         0.1, // friction
-        30, // collider radius
+        32, // collider radius
         ".\\res\\pictures\\blue_bot64.png", // texture
-        false
-        ), 
+        true,
+        true
+        ),
     is_moving(false),
-    is_mining(false)
+    is_mining(false),
+    brain(make_shared<NaturalNN>()),
+    health(2000),
+    energy(500)
 {
+    AddTag(Tag::Nanobot_type);
 }
 
 
@@ -38,6 +43,7 @@ void Nanobot::Tick(double dT)
         beam->SetDirection(GetDirection());
     }
 }
+
 
 void Nanobot::StartMovement()
 {
@@ -67,11 +73,28 @@ void Nanobot::StopMining()
 
 void Nanobot::Shoot()
 {
-    shared_ptr<ThermalBlast> bolt = make_shared<ThermalBlast>();
-    bolt->SetPosition(GetPosition() + GetDirection() * 40);
-    bolt->SetDirection(GetDirection());
-    bolt->SetVelocity(GetDirection() * 200);
-    bolt->SetZoom(0.25);
-    registeredEngine->AddGameObject(bolt);
+    if(energy > 50)
+    {
+        energy -= 50;
+        shared_ptr<ThermalBlast> blast = make_shared<ThermalBlast>();
+        blast->SetPosition(GetPosition() + GetDirection() * 50);
+        blast->SetDirection(GetDirection());
+        blast->SetVelocity(GetDirection() * 200);
+        blast->SetZoom(0.25);
+        registeredEngine->AddGameObject(blast);
+    }
+}
+
+void Nanobot::ReceiveDamage(double dmg)
+{
+    OutputDebugStringA(string("Nanobot receives " + to_string(dmg) + " dmg.\n").c_str());
+    OutputDebugStringA((("Old health: ")+ to_string(health) + "\n").c_str());
+    health -= dmg;
+    OutputDebugStringA((("New health: ") + to_string(health) + "\n").c_str());
+    if (health <= 0)
+    {
+        OutputDebugStringA("New health: \n");
+        Die();
+    }
 }
 

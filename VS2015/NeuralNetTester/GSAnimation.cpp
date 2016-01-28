@@ -19,8 +19,8 @@ void GSAnimation::Reset()
 void GSAnimation::UpdateDrawable(double dT)
 {
     InternalDurationCounter += dT;
-    dstRect->SetRectHeight(texture->GetHeight() * zoomLevel);
-    dstRect->SetRectWidth((texture->GetWidth() * zoomLevel)/ NumberOfAnimFrames);
+    dstRect->SetRectHeight((texture->GetHeight() * zoomLevel));
+    dstRect->SetRectWidth(((texture->GetWidth() * zoomLevel)/ NumberOfAnimFrames));
 
     UpdateSrcRectBasedOnAnimationState();
 }
@@ -33,7 +33,7 @@ shared_ptr<GSTexture> GSAnimation::GetTexture()
 
 void GSAnimation::UpdateSizeFromTexture()
 {
-    dstRect->SetRectWidth((texture->GetWidth() * zoomLevel) / NumberOfAnimFrames);
+    dstRect->SetRectWidth(((texture->GetWidth() * zoomLevel) / NumberOfAnimFrames));
     dstRect->SetRectHeight((texture->GetHeight() * zoomLevel));
     srcRect->SetRectWidth(texture->GetWidth() / NumberOfAnimFrames);
     srcRect->SetRectHeight(texture->GetHeight());

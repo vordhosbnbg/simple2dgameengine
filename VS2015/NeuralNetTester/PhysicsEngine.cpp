@@ -1,5 +1,5 @@
 #include "PhysicsEngine.h"
-
+#include <iostream>
 
 
 PhysicsEngine::PhysicsEngine()
@@ -26,7 +26,8 @@ void PhysicsEngine::RemovePhysicalObject(shared_ptr<PhysicalObject> obj)
 
 void PhysicsEngine::Simulate(double dT)
 {
-    for (auto iterPobj = ListOfPhysicalObjects.begin(); iterPobj != ListOfPhysicalObjects.end(); ++iterPobj) 
+    lock_guard<mutex> lock(ListOfPhysicalObjects_mutex);
+    for (auto iterPobj = ListOfPhysicalObjects.begin(); iterPobj != ListOfPhysicalObjects.end(); ++iterPobj)
     {
         (*iterPobj)->Simulate(dT);
     }
@@ -36,15 +37,14 @@ void PhysicsEngine::Simulate(double dT)
 
 int PhysicsEngine::FindCollisions()
 {
-    lock_guard<mutex> lock(ListOfPhysicalObjects_mutex);
     int retVal = 0;
     for (auto iterObj1 = ListOfPhysicalObjects.begin(); iterObj1 != ListOfPhysicalObjects.end(); ++iterObj1)
     {
-        if ((*iterObj1)->IsActive())
+        if ((*iterObj1)->IsCollidable())
         {
             for (auto iterObj2 = next(iterObj1); iterObj2 != ListOfPhysicalObjects.end(); ++iterObj2)
             {
-                if ((*iterObj2)->IsActive())
+                if ((*iterObj2)->IsCollidable())
                 {
                     if ((*iterObj1)->IsColliding((*iterObj2)))
                     {
@@ -61,13 +61,18 @@ void PhysicsEngine::ResolveCollisions()
 {
     for (auto iterCollidePair = ListOfPairsThatCollide.begin(); iterCollidePair != ListOfPairsThatCollide.end(); ++iterCollidePair) 
     {
-        if (!iterCollidePair->first->IsMovingAwayFrom(iterCollidePair->second))
+        if (iterCollidePair->first->HasImpulse() && iterCollidePair->second->HasImpulse())
         {
-            Vector2D impulseFirst = iterCollidePair->first->RemoveImpulse();
-            Vector2D impulseSecond = iterCollidePair->second->RemoveImpulse();
-            iterCollidePair->first->AddImpulse(impulseSecond);
-            iterCollidePair->second->AddImpulse(impulseFirst);
+            if (!iterCollidePair->first->IsMovingAwayFrom(iterCollidePair->second))
+            {
+                Vector2D impulseFirst = iterCollidePair->first->RemoveImpulse();
+                Vector2D impulseSecond = iterCollidePair->second->RemoveImpulse();
+                iterCollidePair->first->AddImpulse(impulseSecond);
+                iterCollidePair->second->AddImpulse(impulseFirst);
+            }
         }
+        iterCollidePair->first->Collide(iterCollidePair->second);
+        iterCollidePair->second->Collide(iterCollidePair->first);
     }
     ListOfPairsThatCollide.clear();
 }

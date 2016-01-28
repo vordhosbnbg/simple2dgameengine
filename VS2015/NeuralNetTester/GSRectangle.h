@@ -30,10 +30,6 @@ public:
 
 private:
     shared_ptr<SDL_Rect> raw_rect;
-    mutex posX_mutex;
-    mutex posY_mutex;
-    mutex width_mutex;
-    mutex height_mutex;
 };
 
 #endif // GSRECTANGLE_H

@@ -9,6 +9,10 @@ public:
     ~ThermalBlast();
 
     void Tick(double dT) override;
+    void Collide(const shared_ptr<PhysicalObject> obj) override;
+
+private:
+    double damage_amount;
 };
 
 #endif // THERMALBLAST_H

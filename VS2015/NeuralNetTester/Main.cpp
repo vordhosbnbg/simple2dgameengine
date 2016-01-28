@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     bot4->SetDirection(Vector2D(1, 334));
     bot5->SetPosition(Vector2D(400, 700));
     bot5->SetDirection(Vector2D(-1, -2));
-    bot6->SetPosition(Vector2D(500, 100));
+    bot6->SetPosition(Vector2D(800, 300));
     bot6->SetDirection(Vector2D(1, -2.5));
     bot7->SetPosition(Vector2D(600, 200));
     bot7->SetDirection(Vector2D(-1, -1.5));
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     bot5->StartMovement();
     bot6->StartMovement();
     bot7->StartMovement();
-    Sleep(4000);
+    Sleep(2000);
     bot1->StopMovement();
     bot2->StopMovement();
     bot3->StopMovement();
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     bot5->StartMining();
     bot6->StartMining();
     bot7->StartMining();
-    Sleep(5000);
+    Sleep(2000);
     bot1->StopMining();
     bot2->StopMining();
     bot3->StopMining();
@@ -95,7 +95,15 @@ int main(int argc, char **argv)
     bot5->Shoot();
     bot6->Shoot();
     bot7->Shoot();
-    Sleep(500);
+    Sleep(600);
+    bot1->Shoot();
+    bot2->Shoot();
+    bot3->Shoot();
+    bot4->Shoot();
+    bot5->Shoot();
+    bot6->Shoot();
+    bot7->Shoot();
+    Sleep(700);
     bot1->Shoot();
     bot2->Shoot();
     bot3->Shoot();
@@ -111,7 +119,6 @@ int main(int argc, char **argv)
     bot5->Shoot();
     bot6->Shoot();
     bot7->Shoot();
-    Sleep(500);
     Sleep(8000);
     return retVal;
 }

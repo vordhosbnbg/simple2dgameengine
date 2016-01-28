@@ -69,8 +69,8 @@ shared_ptr<GSRectangle> GSDrawable::GetDstRect()
 
 void GSDrawable::UpdateSizeFromTexture()
 {
-    dstRect->SetRectWidth(texture->GetWidth() * zoomLevel);
-    dstRect->SetRectHeight(texture->GetHeight() * zoomLevel);
+    dstRect->SetRectWidth((texture->GetWidth() * zoomLevel));
+    dstRect->SetRectHeight((texture->GetHeight() * zoomLevel));
     srcRect->SetRectWidth(texture->GetWidth());
     srcRect->SetRectHeight(texture->GetHeight());
 }

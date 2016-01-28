@@ -94,6 +94,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -118,6 +119,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,6 +147,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)SDL\include;$(ProjectDir)pugixml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <DisableSpecificWarnings>4250</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -175,6 +178,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)SDL\include;$(ProjectDir)pugixml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <DisableSpecificWarnings>4250</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -222,6 +226,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SdlDeleter.h" />
+    <ClInclude Include="TagHolder.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="ThermalBlast.h" />
     <ClInclude Include="Vector2D.h" />
@@ -254,6 +259,7 @@
     <ClCompile Include="GSRectangle.cpp" />
     <ClCompile Include="pugixml\pugixml.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="TagHolder.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="ThermalBlast.cpp" />
     <ClCompile Include="Vector2D.cpp" />
