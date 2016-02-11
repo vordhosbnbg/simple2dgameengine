@@ -38,9 +38,9 @@ void GameEngine::AddGameObject(shared_ptr<GameObject> obj)
 {
     lock_guard<mutex> lock(ListOfGameObjects_mutex);
     //obj->SetTexture(gd->GetTexture(obj->GetTexturePath())); // set the proper texture for this object
+    obj->RegisterWithEngine(this);
     pe->AddPhysicalObject(obj);
     gd->AddDrawable(obj);
-    obj->RegisterWithEngine(this);
     ListOfGameObjects.push_back(obj);
 }
 
