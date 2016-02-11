@@ -11,3 +11,4 @@
 *.iobj
 *.ipdb
 /VS2015/x64/*
+VS2015/NeuralNetTester.VC.db
