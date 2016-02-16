@@ -12,7 +12,7 @@ Nanobot::Nanobot() :
         100, // mass
         0.1, // friction
         32, // collider radius
-        ".\\res\\pictures\\blue_bot64.png", // texture
+        ".\\res\\pictures\\blue_bot128.png", // texture
         true,
         true
         ),
@@ -22,6 +22,7 @@ Nanobot::Nanobot() :
     health(2000),
     energy(500)
 {
+    zoomLevel = 0.5;
     AddTag(Tag::Nanobot_type);
 }
 
