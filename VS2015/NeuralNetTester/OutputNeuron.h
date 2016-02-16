@@ -10,7 +10,7 @@ template<class T>
 class OutputNeuron : public Neuron
 {
 public:
-    OutputNeuron(T min, T max) : output(make_unique<NormalizedValue<int>>(min, max))
+    OutputNeuron(T min, T max) : output(make_unique<NormalizedValue<double>>(min, max))
     {
         isOutput = true;
     }

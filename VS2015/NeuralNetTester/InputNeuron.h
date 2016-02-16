@@ -10,7 +10,7 @@ template<class T>
 class InputNeuron : public Neuron
 {
 public:
-    InputNeuron(T min, T max) : input(make_unique<NormalizedValue<int>>(min, max))
+    InputNeuron(T min, T max) : input(make_unique<NormalizedValue<double>>(min, max))
     {
 
     }

@@ -11,10 +11,10 @@ NaturalNN::~NaturalNN()
 {
 }
 
-bool NaturalNN::RegisterInput(string inputName, int min, int max, function<int()> inputGetter)
+bool NaturalNN::RegisterInput(string inputName, double min, double max, function<double()> inputGetter)
 {
     bool retVal = false;
-    auto mapPair = ListOfIntInputs.insert(pair<string, shared_ptr<InputNeuron<int>>>(inputName, make_shared<InputNeuron<int>>(min, max)));
+    auto mapPair = ListOfIntInputs.insert(pair<string, shared_ptr<InputNeuron<double>>>(inputName, make_shared<InputNeuron<double>>(min, max)));
     if (mapPair.second) 
     {
         mapPair.first->second->RegisterInput(inputGetter);
@@ -23,10 +23,10 @@ bool NaturalNN::RegisterInput(string inputName, int min, int max, function<int()
     return retVal;
 }
 
-bool NaturalNN::RegisterOutput(string outputName, int min, int max, function<void(int)> outputSetter)
+bool NaturalNN::RegisterOutput(string outputName, double min, double max, function<void(double)> outputSetter)
 {
     bool retVal = false;
-    auto mapPair = ListOfIntOutputs.insert(pair<string, shared_ptr<OutputNeuron<int>>>(outputName, make_shared<OutputNeuron<int>>(min, max)));
+    auto mapPair = ListOfIntOutputs.insert(pair<string, shared_ptr<OutputNeuron<double>>>(outputName, make_shared<OutputNeuron<double>>(min, max)));
     if (mapPair.second)
     {
         mapPair.first->second->RegisterOutput(outputSetter);

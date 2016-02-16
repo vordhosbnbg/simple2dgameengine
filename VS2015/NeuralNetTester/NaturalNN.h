@@ -13,16 +13,16 @@ class NaturalNN
 public:
     NaturalNN();
     ~NaturalNN();
-    bool RegisterInput(string inputName, int min, int max, function<int()> inputGetter);
-    bool RegisterOutput(string outputName, int min, int max, function<void(int)> outputSetter);
+    bool RegisterInput(string inputName, double min, double max, function<double()> inputGetter);
+    bool RegisterOutput(string outputName, double min, double max, function<void(double)> outputSetter);
 
     void Initialize();
 
     void RunOnce();
 private:
 
-    map<string, shared_ptr<InputNeuron<int>>> ListOfIntInputs;
-    map<string, shared_ptr<OutputNeuron<int>>> ListOfIntOutputs;
+    map<string, shared_ptr<InputNeuron<double>>> ListOfIntInputs;
+    map<string, shared_ptr<OutputNeuron<double>>> ListOfIntOutputs;
 
 };
 
